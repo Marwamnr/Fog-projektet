@@ -1,10 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
 </head>
-<body>
-$END$
-</body>
+<body4>
+
+<div class="box4">
+
+<div class="container">
+    <img class="logo" alt="logo" src="../public/images/Foglogo.jpeg" th:src="@{/images/Foglogo.jpeg}" />
+</div>
+
+
+<div class="logincenter">
+    <h1>Sign in</h1>
+</div>
+
+
+    <div class="form-container">
+        <form class="generic-form" method="post">
+            <input type="text" name="email" placeholder="Email*" required>
+            <input type="password" name="password" placeholder="Password*" required>
+            <button type="submit" formaction="/login">Login</button>
+            <div><p class="error" th:unless="${#strings.isEmpty(message)}" th:text="${message}"></p></div>
+        </form>
+    </div>
+
+
+
+
+<div class="centered">
+    <a th:if="${session.currentUser != null}" href="frontpage.html" th:href="@{/logout}">Logout</a>
+    <span  th:if="${session.currentUser != null}"> | </span>
+    <a href="createuser.html" th:href="@{/createuser}">Create user</a>
+</div>
+</div>
+
+
+</body4>
 </html>

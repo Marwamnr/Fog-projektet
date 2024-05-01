@@ -1,10 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<title>Frontpage</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+
 </head>
-<body>
-$END$
-</body>
+<body3>
+
+<div class="box3">
+
+
+<div class="container">
+    <img class="logo" alt="logo" src="../public/images/Foglogo.jpeg" th:src="@{/images/Foglogo.jpeg}" />
+</div>
+
+
+<div class="centered">
+    <h1>Create new user</h1>
+</div>
+
+    <form class="user-form" method="post" action="/createuser">
+        <input type="text" name="email" placeholder="Email*" required>
+        <div class="name-inputs">
+            <input type="text" name="navn" placeholder="Navn*" required>
+            <input type="text" name="efternavn" placeholder="Efternavn*" required>
+        </div>
+        <input type="text" name="adresse" placeholder="Address*" required>
+        <input type="text" name="postnr" placeholder="Postnr.*" required>
+        <input type="text" name="By" placeholder="By*" required>
+        <input type="text" name="Telefonr" placeholder="Telefonr.*" required>
+        <input type="password" name="password1" placeholder="Indtast dit password" required>
+        <input type="password" name="password2" placeholder="Indtast dit password igen" required>
+        <button type="submit">Opret bruger</button>
+        <div><p th:text="${message}"></p></div>
+    </form>
+
+
+<div class="centered">
+    <p>or</p>
+    <a th:if="${session.currentUser != null}" href="login.html" th:href="@{/logout}">Logout</a>
+</div>
+</div>
+
+
+</body3>
 </html>

@@ -1,10 +1,277 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>valg af carport</title>
+    <title>standardCarport</title>
+    <style>
+        .flex-container {
+            display: flex;
+        }
+
+        .flex-item {
+            flex: 1;
+            margin-right: 10px;
+            margin-left: 50px;
+        }
+
+        .flex-container2 {
+            display: flex;
+            position:fixed;
+            bottom:1px;
+            left:10px;
+        }
+
+        .flex-item2 {
+            flex: 1;
+            margin-right: 10px;
+            margin-left: 50px;
+            margin-bottom: 1px;
+        }
+
+        .Checkbox{
+            position:fixed;
+            top:60px;
+            left:10px;
+
+        }
+
+        .carport-boxes{
+
+            background-color: #f8f3f3;
+            padding:20px;
+            border-radius:8px;
+            max-width:400px;
+            max-height: 170px;
+            margin-bottom: 20px;
+            position:relative;
+
+        }
+
+        .standard{
+            position:fixed;
+            top:100px;
+            left:1000px;
+
+        }
+
+        .text1{
+            font-size: 10px;
+
+        }
+
+        .text2{
+
+            font-size: 20px;
+            font-weight:1000;
+
+        }
+
+        .text3{
+
+            font-size: 20px;
+            font-weight:1000;
+
+        }
+
+        .text4{
+            font-size: 10px;
+
+        }
+
+        .buy-button{
+            background-color: #1b337e;
+            color:white;
+            border:none;
+            padding: 10px 20px;
+            bottom:20px;
+            right: 20px;
+            position:absolute;
+
+
+        }
+
+        .BackTomainPage{
+            position:fixed;
+            top:50px;
+            left:1000px;
+
+        }
+    </style>
+
 </head>
 <body>
+
+<div class="flex-container">
+    <div class="flex-item">1-3 dages levering</div>
+    <div class="flex-item">30 dages returret</div>
+    <div class="flex-item">klik og hent inden for 3 timer</div>
+</div>
+
+
+<div class="Checkbox">
+
+    <h1>Carporte</h1>
+
+    <h2>Kategori</h2>
+
+    <label>
+        <input type="checkbox" name="category" value="Double carport">
+        Dobbelt carport
+    </label>
+    <br>
+    <br>
+    <label>
+        <input type="checkbox" name="category" value="Single carport">
+        Enkelt carport
+    </label>
+
+    <br>
+    <br>
+
+    <h2>Pris</h2>
+
+    <label>
+        <input type="checkbox" name="price" value="under 30.000 kr.">
+        under 30.000 kr.
+    </label>
+    <br>
+    <br>
+    <label>
+        <input type="checkbox" name="price" value="under 45.000 kr.">
+        under 45.000 kr.
+    </label>
+    <br>
+    <br>
+    <label>
+        <input type="checkbox" name="price" value="under 60.000 kr.">
+        under 60.000 kr
+    </label>
+
+    <br>
+    <br>
+
+    <h2>Længde (cm)</h2>
+
+    <label>
+        <input type="checkbox" name="length" value="480">
+        480
+    </label>
+    <br>
+    <br>
+    <label>
+        <input type="checkbox" name="length" value="780">
+        780
+    </label>
+    <br>
+    <br>
+    <label>
+        <input type="checkbox" name="length" value="990">
+        990
+    </label>
+
+    <br>
+    <br>
+
+    <h2>Bredde (cm)</h2>
+
+    <label>
+        <input type="checkbox" name="width" value="300">
+        300
+    </label>
+    <br>
+    <br>
+    <label>
+        <input type="checkbox" name="width" value="390">
+        390
+    </label>
+    <br>
+    <br>
+    <label>
+        <input type="checkbox" name="width" value="600">
+        600
+    </label>
+</div>
+
+<form action="/BackTomainPage" method="post">
+    <button class="BackTomainPage" type="submit" formaction="/BackTomainPage">Tilbage til forsiden</button>
+
+    <div class="standard">
+        <div class="carport-boxes">
+            <form action="/Buy" method="post">
+                <span class="text1">Fog</span>
+                <br />
+                <span class="text2">
+
+    DOBBELT CARPORT 6,00X4,80 M CAR01DU UDEN MIDTERSTOLPE - FLADT TAG
+
+  </span>
+                <br />
+                <br />
+                <br />
+                <span class="text3">15.998,00 ,-</span>
+                <br />
+                <br />
+                <span class="text4">pr. stk. + evt. fragt</span>
+                <br />
+                <br />
+                <br />
+                <br />
+
+                <button class="buy-button" type="submit" formaction="/Buy">Køb</button>
+
+            </form>
+        </div>
+
+        <div class="carport-boxes">
+            <form action="/Buy" method="post">
+                <span class="text1">Fog</span>
+                <br />
+                <span class="text2">
+ENKELT CARPORT 3,90X7,80 M CP01HR MED REDSKABSRUM OG FLADT TAG
+
+  </span>
+                <br />
+                <br />
+                <br />
+                <span class="text3">44.998,00 ,-</span>
+                <br />
+                <br />
+                <span class="text4">pr. stk. + evt. fragt</span>
+                <br />
+                <br />
+                <br />
+                <br />
+
+                <button class="buy-button" type="submit" formaction="/Buy">Køb</button>
+
+            </form>
+        </div>
+
+        <div class="carport-boxes">
+            <form action="/Buy" method="post">
+                <span class="text1">Fog</span>
+                <br />
+                <span class="text2">
+DOBBELT CARPORT 6,00X8,70 M CP02HSR MED REDSKABSRUM OG FLADT TAG
+  </span>
+                <br />
+                <br />
+                <br />
+                <span class="text3">52.998,00 ,-</span>
+                <br />
+                <br />
+                <span class="text4">pr. stk. + evt. fragt</span>
+                <br />
+                <br />
+                <br />
+                <br />
+
+                <button class="buy-button" type="submit" formaction="/Buy">Køb</button>
+
+            </form>
+        </div>
+    </div>
+
 
 </body>
 </html>

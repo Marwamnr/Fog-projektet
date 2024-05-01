@@ -1,2 +1,4 @@
-package app.persistence;public class OrderMapper {
+package app.persistence;
+
+public class OrderMapper {
 }

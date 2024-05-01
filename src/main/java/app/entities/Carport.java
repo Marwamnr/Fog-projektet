@@ -1,2 +1,4 @@
-package app.entities;public class Carport {
+package app.entities;
+
+public class Carport {
 }

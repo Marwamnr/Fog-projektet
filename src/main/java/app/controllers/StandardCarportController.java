@@ -1,2 +1,4 @@
-package app.controllers;public class StandardCarport {
+package app.controllers;
+
+public class StandardCarportController {
 }

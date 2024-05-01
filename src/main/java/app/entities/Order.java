@@ -1,2 +1,4 @@
-package app.entities;public class Order {
+package app.entities;
+
+public class Order {
 }

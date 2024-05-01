@@ -1,2 +1,4 @@
-package app.controllers;public class OrderController {
+package app.controllers;
+
+public class OrderController {
 }

@@ -1,2 +1,4 @@
-package app.persistence;public class StandardCarportMapper {
+package app.persistence;
+
+public class StandardCarportMapper {
 }
