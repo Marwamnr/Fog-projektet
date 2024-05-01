@@ -1,0 +1,49 @@
+@startuml
+'https://plantuml.com/state-diagram
+!pragma layout smetana
+
+
+
+scale 700 width
+[*] --> frontpage
+
+
+state frontpage {
+
+  frontpage --> designCarport
+  frontpage --> standardCarport
+  frontpage --> fogKonto
+
+
+  designCarport --> valgAfDesign
+  standardCarport --> valgAfDesign
+  fogKonto --> login : LogInd/Administrator/kunde
+
+  login --> BestillingsideAdministrator
+
+}
+
+
+
+state valgAfDesign {
+  [*] --> SeBestillingside : SeBestillingside
+  SeBestillingside--> indtastoplysninger : indtastoplysninger
+
+  indtastoplysninger --> orderformular : send formular
+    orderformular --> Ordrerbekræftelse: bekræft
+
+}
+
+state login {
+  [*] --> IndtastOplysninger
+  IndtastOplysninger --> forside : logger ind
+}
+
+state BestillingsideAdministrator {
+  [*] --> Bestillingside : Bestillingside
+  Bestillingside--> ordrerOversigt : ordrer
+  Bestillingside--> kundeOversigt : kunder
+  Bestillingside--> balance : balance
+}
+
+@enduml

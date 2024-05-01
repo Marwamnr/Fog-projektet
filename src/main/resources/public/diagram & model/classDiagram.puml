@@ -1,0 +1,32 @@
+@startuml
+'https://plantuml.com/class-diagram
+!pragma layout smetana
+
+
+abstract class CarportController
+abstract class DesignCarportController
+abstract class OrderController
+abstract class StandardCarportController
+abstract class UserController
+
+abstract class Carport
+abstract class DesignCarport
+abstract class Order
+abstract class StandardCarport
+abstract class User {
+    private int UserId;
+    private String email;
+    private String password;
+    private String role;
+}
+
+abstract class CarportMapper
+abstract class DesignCarportMapper
+abstract class OrderMapper
+abstract class StandardCarportMapper
+abstract class UserMapper
+
+
+
+
+@enduml
