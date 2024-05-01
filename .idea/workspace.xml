@@ -4,41 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f48ce4a-a0d6-4e94-8e6f-b11a2a6b287c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/config/SessionConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/config/SessionConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/config/ThymeleafConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/config/ThymeleafConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/controllers/CarportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/controllers/CarportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/controllers/DesignCarportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/controllers/DesignCarportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/controllers/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/controllers/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/controllers/StandardCarportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/controllers/StandardCarportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/entities/Carport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entities/Carport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/entities/DesignCarport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entities/DesignCarport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/entities/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entities/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/entities/StandardCarport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entities/StandardCarport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/entities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/exceptions/DatabaseException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/exceptions/DatabaseException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/persistence/CarportMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/persistence/CarportMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/persistence/ConnectionPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/persistence/ConnectionPool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/persistence/DesignCarportMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/persistence/DesignCarportMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/persistence/OrderMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/persistence/OrderMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/persistence/StandardCarportMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/persistence/StandardCarportMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/persistence/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/persistence/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/aboutUs.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/aboutUs.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/cancellationAndReturns.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/cancellationAndReturns.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/createuser.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/createuser.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/frontpage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/frontpage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/orderConfirmation.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/orderConfirmation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/personalData.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/personalData.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/shipping.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/shipping.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/standardCarport.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/standardCarport.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/termsAndConditions.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/termsAndConditions.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/warranty.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/warranty.html" afterDir="false" />
+    <list default="true" id="1f48ce4a-a0d6-4e94-8e6f-b11a2a6b287c" name="Changes" comment="Test commit and push">
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/config/hey.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,14 +18,19 @@
         <option value="package-info" />
         <option value="CSS File" />
         <option value="UML Sequence" />
-        <option value="Class" />
         <option value="UML State" />
         <option value="HTML File" />
         <option value="UML Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="KubernetesApiProvider"><![CDATA[{
@@ -85,7 +57,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "Marwa",
     "kotlin-language-version-configured": "true",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
@@ -122,8 +94,17 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1713965870040</updated>
-      <workItem from="1713965871261" duration="59655000" />
+      <workItem from="1713965871261" duration="60015000" />
     </task>
+    <task id="LOCAL-00001" summary="Test commit and push">
+      <option name="closed" value="true" />
+      <created>1714596160745</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1714596160745</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,5 +112,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Test commit and push" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test commit and push" />
   </component>
 </project>
