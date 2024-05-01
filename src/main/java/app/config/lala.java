@@ -1,4 +1,4 @@
 package app.config;
 
-public class hey {
+public class lala {
 }
