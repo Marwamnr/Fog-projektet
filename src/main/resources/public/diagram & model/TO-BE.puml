@@ -1,0 +1,48 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+|Kunde|
+start
+if()
+:Bestil standard carport;
+:Betaling;
+|Sælger|
+:Bekræft køb;
+
+|Kunde|
+:Ordrer inkl. tegning og stykliste; <<task>>
+
+stop
+
+else ()
+|Kunde|
+:Bestil design carport;
+:Send forespørgselse;
+endif
+
+|Nyt IT-system|
+:Forespørgsel; <<task>>
+
+|Sælger|
+:Behandle forespørgelse;
+
+|Nyt IT-system|
+:Generering af pris, tegning og byggevejledning;
+
+
+|Sælger|
+:Pris,tegning og vejledning; <<task>>
+:Send mail til kunde;
+:Ring til kunde;
+|Kunde|
+:Accepter tilbud / Betaling;
+|Sælger|
+:Bekræft køb;
+:Pakke ordrer og send;
+
+|Kunde|
+:Ordrer inkl. tegning og stykliste; <<task>>
+
+stop
+
+@enduml
