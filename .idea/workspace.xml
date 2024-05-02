@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f48ce4a-a0d6-4e94-8e6f-b11a2a6b287c" name="Changes" comment="Test commit and push">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +57,8 @@
     "DefaultPlantUmlFileTemplate": "UML Class",
     "JavaScript Debug.frontpage.html.executor": "Run",
     "JavaScript Debug.warranty.html.executor": "Run",
+    "Maven.Fog-projektet [clean].executor": "Run",
+    "Maven.Fog-projektet [compile].executor": "Run",
     "Maven.Fog-projektet [package].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -86,6 +86,24 @@
       <recent name="$PROJECT_DIR$/src/main/resources/public/images" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="corretto-17" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <envs>
+        <env name="DEPLOYED" value="PROD" />
+        <env name="JDBC_CONNECTION_STRING" value="jdbc:postgresql://157.230.113.224:5432/%s?currentSchema=public" />
+        <env name="JDBC_DB" value="fog" />
+        <env name="JDBC_PASSWORD" value="ekm94whb" />
+        <env name="JDBC_USER" value="postgres" />
+      </envs>
+      <option name="MAIN_CLASS_NAME" value="app.Main" />
+      <module name="Fog-projektet" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -103,6 +121,7 @@
       <updated>1713965870040</updated>
       <workItem from="1713965871261" duration="60015000" />
       <workItem from="1714635937367" duration="2265000" />
+      <workItem from="1714640303460" duration="1819000" />
     </task>
     <task id="LOCAL-00001" summary="Test commit and push">
       <option name="closed" value="true" />
