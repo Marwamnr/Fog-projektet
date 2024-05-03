@@ -8,7 +8,7 @@ Marlene
 
 Allan
 
-Jaller
+Jantie
 
 -------
 
