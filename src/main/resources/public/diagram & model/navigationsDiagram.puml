@@ -1,49 +1,54 @@
 @startuml
-'https://plantuml.com/state-diagram
-!pragma layout smetana
+
+scale 900 width
 
 
 
-scale 700 width
-[*] --> frontpage
+state FogHomePage {
 
-
-state frontpage {
-
-  frontpage --> designCarport
-  frontpage --> standardCarport
-  frontpage --> fogKonto
-
-
-  designCarport --> valgAfDesign
-  standardCarport --> valgAfDesign
-  fogKonto --> login : LogInd/Administrator/kunde
-
-  login --> BestillingsideAdministrator
-
-}
+[*] --> FrontPage
+  FrontPage --> designCarport
+  FrontPage --> standardCarport
+  FrontPage --> fogKonto
 
 
 
-state valgAfDesign {
-  [*] --> SeBestillingside : SeBestillingside
-  SeBestillingside--> indtastoplysninger : indtastoplysninger
 
-  indtastoplysninger --> orderformular : send formular
-    orderformular --> Ordrerbekræftelse: bekræft
+
+  state CarportDesignSide{
+  designCarport --> CarportDesignSide : tryk på knap
+  [*]--> BestillingsFormular
+  BestillingsFormular--> Bekræftelse : Udfylde formular/indsend
+  }
+
+  state CarportStandardSide {
+  standardCarport --> CarportStandardSide : tryk på knap
+  [*]--> OversigtStandardCarports
+  OversigtStandardCarports--> CheckoutFormular : vælg/tryk på køb
+  CheckoutFormular --> OrdreBekræftelse:Udfylde kunde- og betalingsInfo
 
 }
 
-state login {
-  [*] --> IndtastOplysninger
-  IndtastOplysninger --> forside : logger ind
+  fogKonto --> FogKontoKunde : LogInd/kunde
+  fogKonto --> FogKontoAdministrator : LogInd/administrator
+
+
+
 }
 
-state BestillingsideAdministrator {
-  [*] --> Bestillingside : Bestillingside
-  Bestillingside--> ordrerOversigt : ordrer
-  Bestillingside--> kundeOversigt : kunder
-  Bestillingside--> balance : balance
+state FogKontoAdministrator {
+[*]-->OrdrerOversigt: tryk på ordrer-knap
+OrdrerOversigt-->BeregningSystem :vælg ordre/tryk på beregnings-knap
+BeregningSystem-->TegningOgStykliste :Udfyld data/tryk på beregn
+
+}
+
+state FogKontoKunde {
+
+
+[*]-->OrdreStatus :tryk på knap
+OrdreStatus-->StyklisteogTegning :tryk på knap
+
 }
 
 @enduml
