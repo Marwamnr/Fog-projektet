@@ -1,6 +1,6 @@
 package app.persistence;
 
-import app.entities.PartlistItem;
+import app.entities.PartListItem;
 import app.exceptions.DatabaseException;
 
 import java.sql.Connection;
@@ -12,13 +12,13 @@ import java.util.List;
 
 public class OrderLineMapper {
 
-    public static List<PartlistItem> getOrderLinesForUser(ConnectionPool connectionPool, int userId) throws DatabaseException {
+    public static List<PartListItem> getOrderLinesForUser(ConnectionPool connectionPool, int userId) throws DatabaseException {
         String sql = "SELECT m.description AS material_description, m.length, ol.quantity, m.unit, ol.description AS orderline_description " +
                 "FROM public.material m " +
                 "JOIN public.order_line ol ON m.material_id = ol.material_id " +
                 "JOIN public.orders o ON ol.order_id = o.order_id " +
                 "WHERE o.user_id = ?";
-        List<PartlistItem> orderLines = new ArrayList<>();
+        List<PartListItem> orderLines = new ArrayList<>();
 
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -32,7 +32,7 @@ public class OrderLineMapper {
                 String unit = rs.getString("unit");
                 String orderLineDescription = rs.getString("orderline_description");
 
-                PartlistItem partlistItem = new PartlistItem(materialDescription, length, quantity, unit, orderLineDescription);
+                PartListItem partlistItem = new PartListItem(materialDescription, length, quantity, unit, orderLineDescription);
                 orderLines.add(partlistItem);
             }
         } catch (SQLException e) {
