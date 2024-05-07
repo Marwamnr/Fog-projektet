@@ -3,30 +3,128 @@
 !pragma layout smetana
 
 
-abstract class CarportController
-abstract class DesignCarportController
-abstract class OrderController
-abstract class StandardCarportController
-abstract class UserController
 
-abstract class Carport
-abstract class DesignCarport
-abstract class Order
-abstract class StandardCarport
-abstract class User {
+ abstract class CarportController
+ abstract class DesignCarportController
+ abstract class OrderController
+ abstract class MaterialController
+ abstract class OrderLineController
+ abstract class OrderStatusController
+
+
+
+ abstract class UserController{
+  private static void logout()
+  public static void login()
+
+ }
+
+
+ class Carport{
+ private int length
+ private int width
+ private int height
+ }
+ class DesignCarport
+ class Order{
+ private int order_id
+ private int orderstatus_id
+ private int user_id
+ private int toolroom_width
+ private int toolroom_length
+ private int total_price
+ private int carport_width
+ private int carport_length
+ }
+ class Material{
+ private int material_id
+ private int width
+ private int length
+ private int meter_price
+ private char description
+ private char unit
+ }
+ class OrderLine{
+ private int order_line_id
+ private int order_id
+ private int material_id
+ private char description
+ private int quantity
+ }
+ class OrderStatus{
+ private int orderstatus_id
+ private char status_name
+ }
+ class User {
     private int UserId;
-    private String email;
-    private String password;
-    private String role;
+    private char email;
+    private char password;
+    private char role;
+    private char adress;
+    private char phonenumber;
+
+
 }
 
-abstract class CarportMapper
-abstract class DesignCarportMapper
-abstract class OrderMapper
-abstract class StandardCarportMapper
-abstract class UserMapper
 
 
 
+ abstract class CarportMapper
+ abstract class DesignCarportMapper
+ abstract class OrderMapper
+ abstract class MaterialMapper
+ abstract class OrderLineMapper
+ abstract class OrderStatusMapper
+ abstract class UserMapper{
+ public static User login()
+ public static User create()
+
+ }
+
+
+
+
+
+ CarportController..> Carport : manipulate
+ CarportMapper..>Carport : Interacts
+ CarportController --> CarportMapper : uses
+
+ DesignCarportController..> DesignCarport : manipulate
+ DesignCarportMapper..>DesignCarport : Interacts
+ DesignCarportController--> DesignCarportMapper : uses
+
+ OrderController..> Order : manipulate
+ OrderMapper..>Order : Interacts
+ OrderController --> OrderMapper : uses
+
+ MaterialController..> Material : manipulate
+ MaterialMapper..>Material : Interacts
+ MaterialController--> MaterialMapper : uses
+
+ OrderLineController..> OrderLine : manipulate
+ OrderLineMapper..>OrderLine : Interacts
+ OrderLineController--> OrderLineMapper : uses
+
+ OrderStatusController..> OrderStatus : manipulate
+ OrderStatusMapper..>OrderStatus : Interacts
+ OrderStatusController--> OrderStatusMapper : uses
+
+ UserController..> User : manipulate
+ UserMapper..>User : Interacts
+ UserController --> UserMapper : uses
+
+
+
+
+
+
+
+Carport-- DesignCarport : represents
+User-->DesignCarport : creates
+User -- Order : places
+Order--Material : uses
+Order --* OrderLine : consist of
+Order --* DesignCarport : consist of
+Order --* OrderStatus:has
 
 @enduml
