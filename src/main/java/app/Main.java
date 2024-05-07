@@ -2,7 +2,10 @@ package app;
 
 import app.config.SessionConfig;
 import app.config.ThymeleafConfig;
+import app.controllers.OrderController;
+import app.controllers.OrderStatusController;
 import app.persistence.ConnectionPool;
+import app.persistence.OrderStatusMapper;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinThymeleaf;
 
@@ -28,6 +31,9 @@ public class Main {
         }).start(7070);
 
         // Routing til frontpage
+
+        OrderController.addRoutes(app, connectionPool);
+        OrderStatusController.addRoutes(app, connectionPool);
 
         app.get("/", ctx -> ctx.render("frontpage.html"));
 
