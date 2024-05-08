@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,5 +7,54 @@
 </head>
 <body>
 
+</body>
+</html>
+=======
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partlist for Carport</title>
+    <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<h3>Order Status</h3>
+<table class="order-status">
+    <thead>
+    <tr>
+        <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="status : ${orderStatusList}">
+        <td th:text="${status}"></td>
+    </tr>    </tbody>
+</table>
+
+<h2>Partlist for Carport</h2>
+    <table class="partlist-header">
+        <thead>
+        <tr>
+            <th>Beskrivelse</th>
+            <th>Længde</th>
+            <th>Antal</th>
+            <th>Enhed</th>
+            <th>Beskrivelse</th>
+        </tr>
+        </thead>
+    </table>
+
+    <table class="partlist-items">
+        <tbody>
+        <tr th:each="item : ${partlistItems}">
+            <td th:text="${item.materialDescription}"></td>
+            <td th:text="${item.length}"></td>
+            <td th:text="${item.quantity}"></td>
+            <td th:text="${item.unit}"></td>
+            <td th:text="${item.orderLineDescription}"></td>
+        </tr>
+        </tbody>
+    </table>
 </body>
 </html>

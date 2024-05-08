@@ -24,28 +24,43 @@
   </div>
 
   <div class="containerOO">
-  <table class="ordreOversigt-table">
-    <thead>
-    <tr>
-      <th>info</th>
-      <th>info</th>
-      <th>info</th>
-      <th>info</th>
-      <th>info</th>
-      <th>info</th>
-    </tr>
-    </thead>
-  </table>
-</div>
+    <table class="ordreOversigt-table">
+      <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Status ID</th>
+        <th>User ID</th>
+        <th>Toolroom Width</th>
+        <th>Toolroom Length</th>
+        <th>Total Price</th>
+        <th>Carport Width</th>
+        <th>Carport Length</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- Use Thymeleaf to iterate over orders and populate table rows -->
+      <tr th:each="order : ${orderList}">
+        <td th:text="${order.orderId}"></td>
+        <td th:text="${order.orderStatusId}"></td>
+        <td th:text="${order.userId}"></td>
+        <td th:text="${order.toolroomWidth}"></td>
+        <td th:text="${order.toolroomLength}"></td>
+        <td th:text="${order.totalPrice}"></td>
+        <td th:text="${order.carportWidth}"></td>
+        <td th:text="${order.carportLength}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 
-<div class="infoFooter">
-  <p>Johannes Fog A/S</p>
-  <p>Firskovvej 20</p>
-  <p>2800 Lyngby</p>
-  <p>CVR-nr. 16314439</p>
-  <p>Tlf: 45 87 10 01</p>
-  <p>Mail: Info@johannesfog.dk</p>
-</div>
+  <div class="infoFooter">
+    <p>Johannes Fog A/S</p>
+    <p>Firskovvej 20</p>
+    <p>2800 Lyngby</p>
+    <p>CVR-nr. 16314439</p>
+    <p>Tlf: 45 87 10 01</p>
+    <p>Mail: Info@johannesfog.dk</p>
+  </div>
 
-</body7>
+  </body7>
 </html>
