@@ -17,41 +17,88 @@
         <p>klik og hent inden for 3 timer</p>
     </div>
 
+
+
     <div class="container">
         <img class="logo" alt="logo" src="../public/images/Foglogo.jpeg" th:src="@{/images/Foglogo.jpeg}" />
     </div>
 
-    <section class="flex">
 
-        <div class="box boxOne">
-            <div class="textForBoxOne">
-                <div class="padding">
-                    <p>Design din helt egen unikke carport</p>
-                    <button class="design-button">Design nu</button>
-                </div>
-            </div>
-            <div class="image">
-                <img class="img" alt="img" src="../public/images/carportImage.jpeg" th:src="@{/images/carportImage.jpeg}" />
-            </div>
+
+
+    <div class="parentflex">
+
+    </div>
+
+
+
+    <section class="etEllerAndet">
+
+        <div class="navigation">
+
+            <form th:if="${session.currentUser == null}" action="/login" method="post">
+                <a class="button_styling" href="/login">Fog konto</a>
+            </form>
+
+            <form th:if="${session.currentUser != null}" action="/orderStatus" method="get">
+                <button class="button_styling"  th:if="${session.currentUser.getRoles().equals('KUNDER')}">
+                    Status
+                </button>
+            </form>
+
+            <form th:if="${session.currentUser != null}" action="/orderOverview" method="get">
+                <button class="button_styling"  th:if="${session.currentUser.getRoles().equals('ADMIN')}">
+                    Order
+                </button>
+            </form>
+
         </div>
 
-        <div class="box boxTwo">
-            <div class="image">
-                <img class="img" alt="img" src="../public/images/carportFoto.webp" th:src="@{/images/carportFoto.webp}">
-            </div>
-            <div class="textForBoxTwo">
-                <div class="padding">
-                    <p>Se vores udvalg af carporte</p>
-                    <button class="udvalg-button">Se udvalg</button>
+
+        <div class="flexos">
+            <p><span th:if="${session.currentUser != null}" th:text="${session.currentUser.email}"></span></p>
+
+        </div>
+
+        <div class="flex">
+
+            <div class="box boxOne">
+                <div class="textForBoxOne">
+                    <div class="padding">
+                        <p>Design din helt egen unikke carport</p>
+                        <form action="/designCarport" method="get">
+                            <p><a href="/designCarport"> <button class="designBtn">Design nu</button></a></p>
+                        </form>
+                    </div>
+                </div>
+                <div class="image">
+                    <img class="img" alt="img" src="../public/images/carportImage.jpeg" th:src="@{/images/carportImage.jpeg}" />
                 </div>
             </div>
+
+            <div class="box boxTwo">
+                <div class="image">
+                    <img class="img" alt="img" src="../public/images/carportFoto.webp" th:src="@{/images/carportFoto.webp}">
+                </div>
+                <div class="textForBoxTwo">
+                    <div class="padding">
+                        <p>Se vores udvalg af carporte</p>
+                        <button class="udvalgBtn">
+                            <a target=”_blank” href="https://www.johannesfog.dk/have-fritid/carporte">
+                                Se udvalg
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </section>
 
 
 
-<div class="footer">
+    <div class="footer">
 
     <div>
         <h3>Social</h3>

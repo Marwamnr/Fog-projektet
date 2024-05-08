@@ -24,13 +24,17 @@ public class UserMapper
             ps.setString(1, email);
             ps.setString(2, password);
 
+
             //sql bliver udført og gemme resultatet
             ResultSet rs = ps.executeQuery();
             if (rs.next())
             {
                 int user_id = rs.getInt("user_id");
-                String role = rs.getString("role");
-                return new User(user_id, email, password,role);
+                String roles = rs.getString("roles");
+                String adress = rs.getString("adress");
+                String phonenumber = rs.getString("phonenumber");
+
+                return new User(user_id, email, password, roles, adress, phonenumber);
             } else
             {
                 throw new DatabaseException("Fejl i login. Prøv igen");

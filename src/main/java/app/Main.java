@@ -2,8 +2,12 @@ package app;
 
 import app.config.SessionConfig;
 import app.config.ThymeleafConfig;
+
+import app.controllers.UserController;
+
 import app.controllers.OrderController;
 import app.controllers.OrderStatusController;
+
 import app.persistence.ConnectionPool;
 import app.persistence.OrderStatusMapper;
 import io.javalin.Javalin;
@@ -30,20 +34,16 @@ public class Main {
             config.fileRenderer(new JavalinThymeleaf(ThymeleafConfig.templateEngine()));
         }).start(7070);
 
-        // Routing til frontpage
+
+
+        // Add routes for controllers
+        UserController.addRoutes(app, connectionPool);
 
         OrderController.addRoutes(app, connectionPool);
         OrderStatusController.addRoutes(app, connectionPool);
 
         app.get("/", ctx -> ctx.render("frontpage.html"));
 
-        app.get("/personalData", ctx -> ctx.render("personalData.html"));
-        app.get("/aboutUs", ctx -> ctx.render("aboutUs.html"));
-
-        app.get("/termsAndConditions", ctx -> ctx.render("termsAndConditions.html"));
-        app.get("/cancellationAndReturns", ctx -> ctx.render("cancellationAndReturns.html"));
-        app.get("/warranty", ctx -> ctx.render("warranty.html"));
-        app.get("/shipping", ctx -> ctx.render("shipping.html"));
 
 
     }
