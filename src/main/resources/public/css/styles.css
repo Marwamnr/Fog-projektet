@@ -2,6 +2,34 @@
 
 /* front page */
 
+
+.button_styling {
+    background-color: #013D76;
+    padding: 10px 25px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    border: none;
+}
+
+.navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+
+}
+
+
+.flexos {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+}
+
+
 .top-text {
     display: flex;
     justify-content: center;
@@ -55,7 +83,7 @@
                     width: 80%;
                 }
 
-                button {
+                .designBtn {
                     background-color: #013D76;
                     border: 1px solid #013D76;
                     padding: 10px 25px;
@@ -99,13 +127,19 @@
                     width: 80%;
                 }
 
-                button {
+
+
+                button.udvalgBtn {
                     background-color: #013D76;
                     border: 1px solid #013D76;
                     padding: 10px 25px;
                     color: white;
                     border-radius: 4px;
                     cursor: pointer;
+
+                    a {
+                        color: white;
+                    }
                 }
             }
 
@@ -190,58 +224,6 @@ a:hover {
     color: #000000;
 }
 
-/* createuser page */
-
-
-.centered {
-    text-align: center;
-}
-
-
-.box3 {
-    background-color: #efeded; /* Blå baggrundsfarve */
-    padding: 30px;
-    border-radius: 10px; /* Runde hjørner */
-}
-
-body3 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.user-form {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 15px;
-}
-.user-form input {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-
-}
-
-.user-form input[name="email"] {
-    grid-column: span 2;
-}
-
-.user-form .name-inputs {
-    grid-column: span 2;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
-}
-
-.user-form button {
-    grid-column: span 2;
-    background-color: #013D76;
-    color: white;
-    padding: 10px 20px;
-}
-
-
 
 /* login page */
 .body4 {
@@ -255,6 +237,15 @@ body3 {
     background-color: #efeded;
     padding: 30px;
     border-radius: 10px;
+    width: 50%;
+    margin: auto;
+}
+
+.btnLogin {
+    background-color: #154985;
+    color: white;
+    border: none;
+    cursor: pointer;
 }
 
 .logincenter {
@@ -288,10 +279,10 @@ body {
 
 .containerOO {
     max-width: 800px;
-    margin: 0 auto; /* Center the container horizontally */
+    margin: 0 auto;
     display: flex;
-    justify-content: center; /* Centrer lodret */
-    align-items: center; /* Centrer vandret */
+    justify-content: center;
+    align-items: center;
 }
 
 .ordreOversigt-table th, .ordreOversigt-table td {
@@ -318,8 +309,8 @@ body {
 
 .overskriftOO {
     display: flex;
-    justify-content: center; /* Centrer lodret */
-    align-items: center; /* Centrer vandret */
+    justify-content: center;
+    align-items: center;
 }
 .containerOC {
     max-width: 600px;
@@ -327,73 +318,11 @@ body {
     background: #f9f9f9;
     padding: 20px;
     border-radius: 5px;
-    margin-bottom: 20px; /* Tilføj margin til bunden */
+    margin-bottom: 20px;
 }
 
 .infoFooter {
-    margin-top: 20px; /* Tilføj margin til toppen */
-}
-
-
-/* personligOplysninger page (standard carport)  */
-
-
-body {
-    font-family: Arial, sans-serif;
-    padding: 20px; /* Jeg har øget padding for at sikre, at elementerne ikke presses for tæt sammen */
-}
-
-.containerPO {
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
-}
-
-.section-titlePO {
-    font-size: 1.2em;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.input-boxPO {
-    display: flex;
-    margin-bottom: 15px;
-}
-
-.input-boxPO input {
-    flex: 1; /* Udvid for at optage tilgængelig plads */
-    padding: 8px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-/* Blue button */
-.blue-buttonPO {
-    background-color: #013D76;
-    color: #fff;
-    padding: 12px 24px; /* Reduceret padding */
-    text-align: center;
-    border-radius: 8px;
-    cursor: pointer;
-    align-self: flex-end; /* Juster til højre side */
-    margin-bottom: 20px; /* Tilføj margin til bunden */
-}
-
-
-.blue-buttonPO:hover {
-    background-color: #013D76;
-}
-
-/* Checkbox container */
-.checkbox-containerPO {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.checkbox-containerPO input[type="checkbox"] {
-    margin-right: 10px;
+    margin-top: 20px;
 }
 
 
