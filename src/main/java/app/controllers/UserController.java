@@ -11,10 +11,11 @@ public class UserController {
 
     public static void addRoutes(Javalin app, ConnectionPool connectionpool) {
 
-        app.get("/", ctx -> frontpage(ctx, connectionpool));
-
         app.get("/login", ctx -> ctx.render("login.html"));
         app.post("/login", ctx -> login(ctx, connectionpool));
+
+        app.post("/logout", ctx -> logout(ctx));
+
 
         app.get("/personalData", ctx -> ctx.render("personalData.html"));
         app.get("/aboutUs", ctx -> ctx.render("aboutUs.html"));
@@ -23,16 +24,12 @@ public class UserController {
         app.get("/warranty", ctx -> ctx.render("warranty.html"));
         app.get("/shipping", ctx -> ctx.render("shipping.html"));
 
-        app.get("/orderStatus", ctx -> ctx.render("orderStatus.html"));
-        app.get("/designCarport", ctx -> ctx.render("designCarport.html"));
 
-
+        app.get("/designCarport", ctx -> ctx.render("createUser.html"));
+        app.post("/submit", ctx -> createUser(ctx, connectionpool));
 
     }
 
-    private static void frontpage(Context ctx, ConnectionPool connectionpool) {
-        ctx.render("frontpage.html");
-    }
 
     private static void logout(Context ctx) {
         ctx.req().getSession().invalidate(); //sletter alle data,
@@ -55,8 +52,35 @@ public class UserController {
 
             ctx.attribute("message", e.getMessage());
 
-
             ctx.render("login.html");
         }
+    }
+
+    public static void createUser(Context ctx, ConnectionPool connectionPool) {
+        //Hent formparametre
+        String email = ctx.formParam("email");
+        String password1 = ctx.formParam("password1");
+        String password2 = ctx.formParam("password2");
+        String roles = ctx.formParam("roles");
+        String adress = ctx.formParam("adress");
+        String phonenumber = ctx.formParam("phonenumber");
+
+
+        if (password1.equals(password2)) {
+
+            try {
+                UserMapper.createuser(email, password1, roles, adress, phonenumber, connectionPool);
+                ctx.attribute("message", "Brugeren oprettet med brugernavn: " + email + ". Log venligst på");
+                ctx.render("login.html");
+
+            } catch (DatabaseException e) {
+                ctx.attribute("message", "Brugernavnet er allerede i brug");
+                ctx.render("createUser.html");
+            }
+
+        } else {
+            ctx.attribute("message", "Kodeordende matcher ikke");
+            ctx.render("createUser.html");
+        } ctx.render("login.html");
     }
 }

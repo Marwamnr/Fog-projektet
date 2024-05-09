@@ -45,4 +45,30 @@ public class UserMapper
             throw new DatabaseException("DB fejl!", e.getMessage());
         }
     }
+
+    public static void createuser(String email, String password, String roles, String adress, String phonenumber, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "insert into users (email, password,roles,adress,phonenumber) values (?,?,?,?,?)";
+
+        try (
+                Connection connection = connectionPool.getConnection();
+                PreparedStatement ps = connection.prepareStatement(sql)
+        ) {
+            ps.setString(1, email);
+            ps.setString(2, password);
+            ps.setString(3,roles);
+            ps.setString(4,adress);
+            ps.setString(5,phonenumber);
+
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected != 1) {
+                throw new DatabaseException("Fejl ved oprettelse af ny bruger");
+
+
+            } else {
+                throw new DatabaseException("Fejl ved oprettelse af bruger. Bruger-ID blev ikke genereret");
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException("Der er sket en fejl. Prøv igen", e.getMessage());
+        }
+    }
 }
