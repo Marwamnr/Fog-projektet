@@ -1,7 +1,9 @@
 package app.controllers;
 
 import app.entities.Order;
+import app.entities.OrderLine;
 import app.persistence.ConnectionPool;
+import app.persistence.OrderLineMapper;
 import app.persistence.OrderMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
@@ -19,15 +21,17 @@ public class OrderController {
         try {
             // Hent ordrelisten fra databasen
             List<Order> orderList = OrderMapper.getAllOrders(connectionPool);
+            List<OrderLine> orderLines = OrderLineMapper.getAllOrderLines(connectionPool);
 
             // Tilføj ordrelisten til konteksten
             ctx.attribute("orderList", orderList);
+            ctx.attribute("orderLines", orderLines);
 
             // Rendere ordrelistevisningen
             ctx.render("orderOverview.html");
         } catch (Exception e) {
             // Håndter eventuelle undtagelser
-            ctx.status(500).result("Fejl ved hentning af ordreliste: " + e.getMessage());
+            ctx.status(500).result("Fejl ved hentning af ordreliste eller linjer: " + e.getMessage());
         }
     }
 
