@@ -3,7 +3,7 @@ package app.controllers;
 import app.entities.PartListItem;
 import app.persistence.ConnectionPool;
 import app.persistence.OrderStatusMapper;
-import app.persistence.OrderLineMapper;
+import app.persistence.PartListMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 
@@ -22,13 +22,13 @@ public class OrderStatusController {
             int userId = ctx.sessionAttribute("userId");
 
             // Retrieve order lines from the database
-            List<PartListItem> orderLines = OrderLineMapper.getOrderLinesForUser(connectionPool, userId);
+            List<PartListItem> partListItems = PartListMapper.getPartListForUser(connectionPool, userId);
 
             // Retrieve order status from the database
             List<String> orderStatusList = OrderStatusMapper.getOrderStatus(connectionPool, userId);
 
             // Add order lines and order status to the context
-            ctx.attribute("orderLines", orderLines);
+            ctx.attribute("partListItems", partListItems);
             ctx.attribute("orderStatusList", orderStatusList);
 
             // Render order lines view
