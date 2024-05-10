@@ -35,6 +35,8 @@
         <th>Total Price</th>
         <th>Carport Width</th>
         <th>Carport Length</th>
+        <th>Calculate</th> <!-- New column for buttons -->
+
       </tr>
       </thead>
       <tbody>
@@ -48,6 +50,11 @@
         <td th:text="${order.totalPrice}"></td>
         <td th:text="${order.carportWidth}"></td>
         <td th:text="${order.carportLength}"></td>
+        <td>
+          <div class="button-OO">
+            <button class="buttonOO">Calculate</button>
+          </div>
+        </td>
       </tr>
       </tbody>
     </table>

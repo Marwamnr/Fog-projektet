@@ -60,7 +60,6 @@ public class OrderMapper {
         } catch (SQLException e) {
             String msg = "Der er sket en fejl. Prøv igen";
             throw new DatabaseException(msg, e.getMessage());
-
         }
     }
 }
