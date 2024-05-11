@@ -1,15 +1,4 @@
 <!DOCTYPE html>
-
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
-=======
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -47,7 +36,7 @@
 
     <table class="partlist-items">
         <tbody>
-        <tr th:each="item : ${partlistItems}">
+        <tr th:each="item : ${partListItems}">
             <td th:text="${item.materialDescription}"></td>
             <td th:text="${item.length}"></td>
             <td th:text="${item.quantity}"></td>

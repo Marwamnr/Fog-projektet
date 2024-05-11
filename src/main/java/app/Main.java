@@ -38,11 +38,9 @@ public class Main {
 
         // Add routes for controllers
         UserController.addRoutes(app, connectionPool);
-
         OrderController.addRoutes(app, connectionPool);
         OrderStatusController.addRoutes(app, connectionPool);
 
-        app.get("/", ctx -> ctx.render("frontpage.html"));
 
 
 
