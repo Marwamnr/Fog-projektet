@@ -15,8 +15,7 @@ public class OrderController {
     public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
         app.get("/orderList", ctx -> showOrderList(ctx, connectionPool));
 
-        app.post("/Inquiry", ctx -> createOrder(ctx, connectionPool));
-    }
+        app.post("/Inquiry", ctx -> createOrder(ctx, connectionPool));    }
 
     public static void showOrderList(Context ctx, ConnectionPool connectionPool) {
         try {
@@ -52,11 +51,10 @@ public class OrderController {
 
         try {
             OrderMapper.createOrder(user_id, carport_length, carport_width, toolroom_length, toolroom_width, connectionPool);
-            ctx.attribute("message", "Din bestilling er oprettet. Du hører fra os snarest.");
-            ctx.render("login.html");
+            ctx.render("orderConfirmation.html");
         } catch (DatabaseException e) {
             ctx.attribute("message", "Noget gik galt. prøv igen");
-            ctx.render("login.html");
+            ctx.render("designCarport.html");
         }
     }
 }

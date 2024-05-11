@@ -20,6 +20,7 @@ public class OrderStatusMapper {
 
             ps.setInt(1, userId);
             ResultSet rs = ps.executeQuery();
+
             while (rs.next()) {
                 String statusName = rs.getString("status_name");
                 orderStatusList.add(statusName);
@@ -28,6 +29,25 @@ public class OrderStatusMapper {
             throw new DatabaseException("Error retrieving order status for user " + userId + ": " + e.getMessage());
         }
         return orderStatusList;
+    }
+
+    public static void updateOrderStatusTo(int orderId, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "UPDATE orders SET orderstatus_id = 2 WHERE order_id = ?";
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement psUpdateStatus = connection.prepareStatement(sql)) {
+
+            // Set the order_id parameter
+            psUpdateStatus.setInt(1, orderId);
+
+            int rowsAffected = psUpdateStatus.executeUpdate();
+            if (rowsAffected != 1) {
+                throw new DatabaseException("Error updating order status. Please try again.");
+            }
+        } catch (SQLException e) {
+            String msg = "An error occurred while updating order status. Please try again.";
+            throw new DatabaseException(msg, e.getMessage());
+        }
     }
 }
 

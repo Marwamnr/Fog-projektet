@@ -51,9 +51,12 @@
         <td th:text="${order.carportWidth}"></td>
         <td th:text="${order.carportLength}"></td>
         <td>
+          <form id="calculateForm" action="/Calculate" method="post">
           <div class="button-OO">
-            <button class="buttonOO">Calculate</button>
+            <button type="submit" class="buttonOO">Calculate</button>
           </div>
+
+
         </td>
       </tr>
       </tbody>
