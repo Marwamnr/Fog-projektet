@@ -33,11 +33,11 @@ public class User {
         return roles;
     }
 
-    private String getAdress() {
+    public String getAdress() {
         return adress;
     }
 
-    private String getPhonenumber() {
+    public String getPhonenumber() {
         return phonenumber;
     }
 }

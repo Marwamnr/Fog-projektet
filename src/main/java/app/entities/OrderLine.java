@@ -15,7 +15,6 @@ public class OrderLine {
         this.quantity = quantity;
     }
 
-    // Getters and Setters
     public int getOrderLineId() {
         return orderLineId;
     }

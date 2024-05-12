@@ -270,6 +270,18 @@ a:hover {
 
 /* orderOversigt page */
 
+.button-OO {
+    text-align: right;
+}
+.buttonOO {
+    padding: 5px 10px;
+    background-color: #007bff; /* Just an example color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -367,7 +379,6 @@ body {
     padding: 8px;
     text-align: left;
 }
-
 
 
 
