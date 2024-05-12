@@ -2,14 +2,14 @@ package app;
 
 import app.config.SessionConfig;
 import app.config.ThymeleafConfig;
-import app.controllers.OrderController;
 import app.controllers.UserController;
+import app.controllers.OrderController;
+import app.controllers.OrderStatusController;
 import app.persistence.ConnectionPool;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinThymeleaf;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
 public class Main {
     private static final String USER = "postgres";
     private static final String PASSWORD = "postgres";
@@ -29,16 +29,16 @@ public class Main {
             config.fileRenderer(new JavalinThymeleaf(ThymeleafConfig.templateEngine()));
         }).start(7070);
 
-        // Routing til frontpage
-
-        app.get("/", ctx -> ctx.render("frontpage.html"));
-
 
 
         // Add routes for controllers
         UserController.addRoutes(app, connectionPool);
         OrderController.addRoutes(app, connectionPool);
-        //OrderStatusController.addRoutes(app, connectionPool);
+        OrderStatusController.addRoutes(app, connectionPool);
+
+
+        app.get("/", ctx -> ctx.render("frontpage.html"));
+
 
 
 

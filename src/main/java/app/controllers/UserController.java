@@ -28,9 +28,8 @@ public class UserController {
         app.get("/designCarport", ctx -> ctx.render("designCarport.html"));
 
 
-        app.get("/createAccount", ctx -> ctx.render("createUser.html"));
+        app.post("/createAccount", ctx -> ctx.render("createUser.html"));
         app.post("/submit", ctx -> createUser(ctx, connectionpool));
-        app.get("createuser",ctx -> ctx.render("createUser.html"));
     }
 
 
