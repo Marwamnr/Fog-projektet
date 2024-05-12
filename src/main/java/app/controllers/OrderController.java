@@ -15,7 +15,8 @@ public class OrderController {
     public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
         app.get("/orderList", ctx -> showOrderList(ctx, connectionPool));
 
-        app.post("/Inquiry", ctx -> createOrder(ctx, connectionPool));    }
+        app.post("/Inquiry", ctx -> createOrder(ctx, connectionPool));
+    }
 
     public static void showOrderList(Context ctx, ConnectionPool connectionPool) {
         try {

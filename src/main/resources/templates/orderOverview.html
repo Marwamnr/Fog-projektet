@@ -36,6 +36,7 @@
         <th>Carport Width</th>
         <th>Carport Length</th>
         <th>Calculate</th> <!-- New column for buttons -->
+          <th>Stykliste</th>
 
       </tr>
       </thead>
@@ -51,17 +52,49 @@
         <td th:text="${order.carportWidth}"></td>
         <td th:text="${order.carportLength}"></td>
         <td>
-          <form id="calculateForm" action="/Calculate" method="post">
-          <div class="button-OO">
-            <button type="submit" class="buttonOO">Calculate</button>
-          </div>
-
-
+            <form id="calculateForm" action="/Calculate" method="post">
+                <div class="button-OO">
+                    <button type="submit" class="buttonOO">Calculate</button>
+                </div>
+            </form>
         </td>
+          <td>
+              <form action="/orderStatus" method="post">
+                  <button type="submit" name="orderId" th:value="${order.orderId}">Se stykliste</button>
+              </form>
+          </td>
       </tr>
       </tbody>
     </table>
   </div>
+
+    <div class="overskriftOO">
+        <h2>All Order Lines</h2>
+    </div>
+    <div class="containerOO">
+
+        <table class="ordreOversigt-table">
+            <thead>
+            <tr>
+                <th>Order Line ID</th>
+                <th>Order ID</th>
+                <th>Material ID</th>
+                <th>Description</th>
+                <th>Quantity</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="orderLine : ${orderLines}">
+                <td th:text="${orderLine.orderLineId}"></td>
+                <td th:text="${orderLine.orderId}"></td>
+                <td th:text="${orderLine.materialId}"></td>
+                <td th:text="${orderLine.description}"></td>
+                <td th:text="${orderLine.quantity}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
 
   <div class="infoFooter">
     <p>Johannes Fog A/S</p>

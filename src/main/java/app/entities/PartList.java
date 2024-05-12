@@ -1,13 +1,14 @@
 package app.entities;
 
-public class PartListItem {
+public class PartList {
+
     private String materialDescription;
     private int length;
     private int quantity;
     private String unit;
     private String orderLineDescription;
 
-    public PartListItem(String materialDescription, int length, int quantity, String unit, String orderLineDescription) {
+    public PartList(String materialDescription, int length, int quantity, String unit, String orderLineDescription) {
         this.materialDescription = materialDescription;
         this.length = length;
         this.quantity = quantity;
@@ -65,5 +66,5 @@ public class PartListItem {
                 ", orderLineDescription='" + orderLineDescription + '\'' +
                 '}';
     }
-}
 
+}
