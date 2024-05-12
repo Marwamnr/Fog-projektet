@@ -16,34 +16,35 @@
     </tr>
     </thead>
     <tbody>
+
     <tr th:each="status : ${orderStatusList}">
         <td th:text="${status}"></td>
     </tr>    </tbody>
 </table>
 
 <h2>Partlist for Carport</h2>
-    <table class="partlist-header">
-        <thead>
-        <tr>
-            <th>Beskrivelse</th>
-            <th>Længde</th>
-            <th>Antal</th>
-            <th>Enhed</th>
-            <th>Beskrivelse</th>
-        </tr>
-        </thead>
-    </table>
+<table class="partlist-header">
+    <thead>
+    <tr>
+        <th>Beskrivelse</th>
+        <th>Længde</th>
+        <th>Antal</th>
+        <th>Enhed</th>
+        <th>Beskrivelse</th>
+    </tr>
+    </thead>
+</table>
 
-    <table class="partlist-items">
-        <tbody>
-        <tr th:each="item : ${partList}">
-            <td th:text="${item.materialDescription}"></td>
-            <td th:text="${item.length}"></td>
-            <td th:text="${item.quantity}"></td>
-            <td th:text="${item.unit}"></td>
-            <td th:text="${item.orderLineDescription}"></td>
-        </tr>
-        </tbody>
-    </table>
+<table class="partlist-items">
+    <tbody>
+    <tr th:each="item : ${partList}">
+        <td th:text="${item.materialDescription}"></td>
+        <td th:text="${item.length}"></td>
+        <td th:text="${item.quantity}"></td>
+        <td th:text="${item.unit}"></td>
+        <td th:text="${item.orderLineDescription}"></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
