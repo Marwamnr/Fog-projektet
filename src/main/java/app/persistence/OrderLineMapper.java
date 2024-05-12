@@ -67,7 +67,7 @@ public class OrderLineMapper {
         }
         return partLists;
     }
-    public static void InsertOrderLines(List<OrderLine> orderLines, ConnectionPool connectionPool) throws DatabaseException {
+    public static void createOrderLine(List<OrderLine> orderLines, ConnectionPool connectionPool) throws DatabaseException {
 
         String sql = "INSERT INTO order_line (order_id, material_id, description, quantity) " +
                 "VALUES (?, ?, ?, ?)";
