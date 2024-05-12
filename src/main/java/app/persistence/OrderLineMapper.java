@@ -3,7 +3,6 @@ package app.persistence;
 import app.entities.OrderLine;
 import app.entities.PartList;
 import app.exceptions.DatabaseException;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -52,7 +51,6 @@ public class OrderLineMapper {
             prepareStatement.setInt(1, orderId);
             try (ResultSet rs = prepareStatement.executeQuery()) {
                 while (rs.next()) {
-                    // Creating PartList objects from the retrieved data
                     String materialDescription = rs.getString("material_description");
                     int length = rs.getInt("length");
                     int quantity = rs.getInt("quantity");
@@ -60,7 +58,6 @@ public class OrderLineMapper {
                     String orderLineDescription = rs.getString("order_line_description");
 
 
-                    // Creating PartList object and adding to the list
                     PartList partList = new PartList(materialDescription, length, quantity, unit, orderLineDescription);
                     partLists.add(partList);
                 }
@@ -70,26 +67,30 @@ public class OrderLineMapper {
         }
         return partLists;
     }
+    public static void InsertOrderLines(List<OrderLine> orderLines, ConnectionPool connectionPool) throws DatabaseException {
 
-    public static void createOrderLine(List<OrderLine> orderLines, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "INSERT INTO order_line (order_id, material_id, description, quantity) " +
                 "VALUES (?, ?, ?, ?)";
+
         try (Connection connection = connectionPool.getConnection()) {
+
             for (OrderLine orderLine : orderLines) {
                 try (PreparedStatement ps = connection.prepareStatement(sql)) {
                     ps.setInt(1, orderLine.getOrderId());
                     ps.setInt(2, orderLine.getMaterialId());
-                    ps.setInt(3, orderLine.getQuantity());
-                    ps.setString(4, orderLine.getDescription());
+                    ps.setString(3, orderLine.getDescription());
+                    ps.setInt(4, orderLine.getQuantity());
                     ps.executeUpdate();
+
                 }
             }
         } catch (SQLException e) {
-            throw new DatabaseException("Could not create orderline in the database", e.getMessage());
+            throw new DatabaseException("Could not create orderline in the database: " + e.getMessage());
         }
     }
-
 }
+
+
 
 
 
