@@ -38,6 +38,36 @@ public class OrderMapper {
         return orderList;
     }
 
+    public static Order insertOrder(Order order, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "INSERT INTO public.orders (orderstatus_id, user_id, toolroom_width, toolroom_length, total_price, carport_width, carport_length) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                ps.setInt(1, order.getOrderStatusId());
+                ps.setInt(2, order.getUserId());
+                ps.setInt(3, order.getToolroomWidth());
+                ps.setInt(4, order.getToolroomLength());
+                ps.setInt(5, order.getTotalPrice());
+                ps.setInt(6, order.getCarportWidth());
+                ps.setInt(7, order.getCarportLength());
+                ps.executeUpdate();
+
+                ResultSet keySet = ps.getGeneratedKeys();
+                if (keySet.next()) {
+
+                    Order newOrder = new Order(keySet.getInt(1), order.getOrderStatusId(), order.getUserId(), order.getToolroomWidth(),
+                            order.getToolroomLength(), order.getTotalPrice(), order.getCarportWidth(), order.getCarportLength());
+                    return newOrder;
+                } else
+                    return null;
+            }
+        } catch (SQLException e)
+        {
+            throw new DatabaseException("Could not create user in the database", e.getMessage());
+        }
+
+    }
+
     public static void createOrder(int user_id, int carportLength, int carportWidth, int toolroomLength, int toolroomWidth, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "insert into orders (orderstatus_id,user_id,toolroom_width,toolroom_length,total_price,carport_width, carport_length) values (?,?,?,?,?,?,?)";
 
