@@ -10,7 +10,6 @@ public class Order {
     private int carportWidth;
     private int carportLength;
 
-    // Constructor
     public Order(int orderId, int orderStatusId, int userId, int toolroomWidth, int toolroomLength, int totalPrice, int carportWidth, int carportLength) {
         this.orderId = orderId;
         this.orderStatusId = orderStatusId;

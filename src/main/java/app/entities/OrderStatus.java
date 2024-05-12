@@ -9,7 +9,6 @@ public class OrderStatus {
         this.statusName = statusName;
     }
 
-    // Getters and Setters
     public int getOrderStatusId() {
         return orderStatusId;
     }
@@ -26,7 +25,6 @@ public class OrderStatus {
         this.statusName = statusName;
     }
 
-    // ToString method
     @Override
     public String toString() {
         return "OrderStatus{" +
