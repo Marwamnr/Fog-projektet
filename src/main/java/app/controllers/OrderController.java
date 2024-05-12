@@ -41,30 +41,47 @@ public class OrderController {
 
 
     private static void sendRequest(Context ctx, ConnectionPool connectionPool) {
-        int carportWidth = ctx.sessionAttribute("carport_width");
-        int carportLength = ctx.sessionAttribute("carport_length");
+
+        User currentUser = ctx.sessionAttribute("currentUser");
+        if (currentUser == null) {
+            ctx.attribute("message", "Du skal logge på for at oprette en bestilling.");
+            ctx.render("designCarport.html");
+            return;
+        }
         int status = 1; // Hardcoded for now
+        int toolroomWidth = Integer.parseInt(ctx.formParam("toolroom_width"));
+        int toolroomLength = Integer.parseInt(ctx.formParam("toolroom_length"));
+        int carportWidth = Integer.parseInt(ctx.formParam("carport_width"));
+        int carportLength = Integer.parseInt(ctx.formParam("carport_length"));
         int totalPrice = 19999; // Hardcoded for now
-        int userId = 1; // You may retrieve the user ID from the session or database
-        int toolroomWidth = ctx.sessionAttribute("toolroom_width");; // Not provided in the original code
-        int toolroomLength = ctx.sessionAttribute("toolroom_length");; // Not provided in the original code
 
-        Order order = new Order(0, status, userId, toolroomWidth, toolroomLength, totalPrice, carportWidth, carportLength);
 
+        // Create the order object
+        Order order = new Order(0, status, currentUser.getUserId(), toolroomWidth, toolroomLength, totalPrice, carportWidth, carportLength);
+
+        // TODO: Insert order in database
         try {
+
+            // Insert the order into the database and get the newly inserted order
             order = OrderMapper.insertOrder(order, connectionPool);
 
+            // TODO: Calculate order items (stykliste)
             Calculator calculator = new Calculator(carportWidth, carportLength, connectionPool);
             calculator.calcCarport(order);
 
-            // Save order lines in the database
-            OrderLineMapper.InsertOrderLines(calculator.getOrderLines(), connectionPool);
+            // TODO: Save order items in database (stykliste)
+            OrderLineMapper.createOrderLine(calculator.getOrderLines(), connectionPool);
 
-            ctx.render("orderflow/requestconfirmation.html");
+            // TODO: Create message to customer and render order / request confirmation
+            ctx.render("orderConfirmation.html");
         } catch (DatabaseException e) {
-            throw new RuntimeException(e);
+            // Handle database exception
+            // You can customize the error message or handle it in any way appropriate for your application
+            ctx.attribute("message", "Noget gik galt. prøv igen");
+            ctx.render("designCarport.html");
         }
     }
+
 
 
     private static void createOrder(Context ctx, ConnectionPool connectionPool) {
