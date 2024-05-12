@@ -15,8 +15,8 @@ import java.util.List;
 public class OrderController {
 
     public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
-        // Definer ruten til at vise ordrelisten
         app.get("/orderList", ctx -> showOrderList(ctx, connectionPool));
+
         app.post("/Inquiry", ctx -> createOrder(ctx, connectionPool));
     }
 
@@ -62,7 +62,7 @@ public class OrderController {
             ctx.render("designCarport.html");
         }
     }
-
 }
+
 
 

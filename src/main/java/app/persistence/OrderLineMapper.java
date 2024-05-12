@@ -3,7 +3,6 @@ package app.persistence;
 import app.entities.OrderLine;
 import app.entities.PartList;
 import app.exceptions.DatabaseException;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -52,7 +51,6 @@ public class OrderLineMapper {
             prepareStatement.setInt(1, orderId);
             try (ResultSet rs = prepareStatement.executeQuery()) {
                 while (rs.next()) {
-                    // Creating PartList objects from the retrieved data
                     String materialDescription = rs.getString("material_description");
                     int length = rs.getInt("length");
                     int quantity = rs.getInt("quantity");
@@ -60,7 +58,6 @@ public class OrderLineMapper {
                     String orderLineDescription = rs.getString("order_line_description");
 
 
-                    // Creating PartList object and adding to the list
                     PartList partList = new PartList(materialDescription, length, quantity, unit, orderLineDescription);
                     partLists.add(partList);
                 }

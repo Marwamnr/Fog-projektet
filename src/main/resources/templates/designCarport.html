@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../public/css/styless.css" th:href="@{/css/styless.css}" rel="stylesheet"/>
 </head>
+
 <body>
 <header>
 
@@ -63,135 +64,149 @@
                         <div class="grey-box">
 
                             <div class="form-group">
-                                <input type="submit" formaction="createAccount" value="Opret Bruger">
-                                <input type="submit" class="btn2" formaction="login" value="Login">
+                                <form action="/createAccount" method="get">
+                                    <button type="submit" class="btn2">Opret Bruger</button>
+                                </form>
                             </div>
 
-                            <form action="#" class="carport-form" method="post">
+                            <div class="form-group">
+                                <form action="/login" method="get">
+                                    <button type="submit" class="btn2">Log på</button>
+                                </form>
+                            </div>
+
+                            <form action="/Inquiry" class="carport-form" method="post">
                                 <h2>Carport efter eget valg</h2>
                                 <p>Vær venlig at udfylde formularen nøje nedenfor og tryk på "Send forespørgsel"</p>
 
 
-                                <form action="/#" method="get">
-                                    <h4>Carport længde:</h4>
+                                <h4>Carport længde:</h4>
 
-                                    <label for="carport_lenght">Længde:</label>
-                                    <select name="carport_lenght" id="carport_lenght">
-                                        <option value="option1">240cm</option>
-                                        <option value="option2">270cm</option>
-                                        <option value="option3">300cm</option>
-                                        <option value="option4">330cm</option>
-                                        <option value="option5">360cm</option>
-                                        <option value="option6">390cm</option>
-                                        <option value="option7">400cm</option>
-                                        <option value="option8">420cm</option>
-                                        <option value="option9">450cm</option>
-                                        <option value="option10">480cm</option>
-                                        <option value="option11">510cm</option>
-                                        <option value="option12">540cm</option>
-                                        <option value="option13">570cm</option>
-                                        <option value="option14">600cm</option>
-                                        <option value="option15">630cm</option>
-                                        <option value="option16">660cm</option>
-                                        <option value="option17">690cm</option>
-                                        <option value="option18">720cm</option>
-                                        <option value="option19">750cm</option>
-                                        <option value="option20">780cm</option>
-                                    </select>
+                                <label for="carport_length">Længde:</label>
+                                <select name="carport_length" id="carport_length">
+                                    <option value="240">240cm</option>
+                                    <option value="270">270cm</option>
+                                    <option value="300">300cm</option>
+                                    <option value="330">330cm</option>
+                                    <option value="360">360cm</option>
+                                    <option value="390">390cm</option>
+                                    <option value="400">400cm</option>
+                                    <option value="420">420cm</option>
+                                    <option value="450">450cm</option>
+                                    <option value="480">480cm</option>
+                                    <option value="510">510cm</option>
+                                    <option value="540">540cm</option>
+                                    <option value="570">570cm</option>
+                                    <option value="600">600cm</option>
+                                    <option value="630">630cm</option>
+                                    <option value="660">660cm</option>
+                                    <option value="690">690cm</option>
+                                    <option value="720">720cm</option>
+                                    <option value="750">750cm</option>
+                                    <option value="780">780cm</option>
+                                </select>
+                                <br>
+                                <h4>Carport bredde*</h4>
+
+                                <label for="carport_width">Bredde:</label>
+                                <select name="carport_width" id="carport_width">
+                                    <option value="240">240cm</option>
+                                    <option value="270">270cm</option>
+                                    <option value="300">300cm</option>
+                                    <option value="330">330cm</option>
+                                    <option value="360">360cm</option>
+                                    <option value="390">390cm</option>
+                                    <option value="400">400cm</option>
+                                    <option value="420">420cm</option>
+                                    <option value="450">450cm</option>
+                                    <option value="480">480cm</option>
+                                    <option value="510">510cm</option>
+                                    <option value="540">540cm</option>
+                                    <option value="570">570cm</option>
+                                    <option value="600">600cm</option>
+                                </select>
+
+                                <h4>Carport trapeztag*</h4>
+
+                                <label for="carport_roof"></label>
+                                <select name="carport_roof" id="carport_roof">
                                     <br>
-                                    <h4>Carport bredde*</h4>
+                                    <option value="Uden tagplader">Uden tagplader</option>
+                                    <option value="Plasttrapezplader">Plasttrapezplader</option>
+                                </select>
+
+                                <br><br><br><br>
+                                <h3>Redskabsskur</h3>
+                                <p>NB! Der skal beregnes 15 cm tagudhæng på hver side af redskabsrummet*</p>
+
+                                <h4>Redskabskur bredde:</h4>
+                                <label for="toolroom_width">Bredde:</label>
+                                <select name="toolroom_width" id="toolroom_width">
+                                    <option value="0">0cm</option>
+                                    <option value="240">240cm</option>
+                                    <option value="270">270cm</option>
+                                    <option value="300">300cm</option>
+                                    <option value="330">330cm</option>
+                                    <option value="360">360cm</option>
+                                    <option value="390">390cm</option>
+                                    <option value="400">400cm</option>
+                                    <option value="420">420cm</option>
+                                    <option value="450">450cm</option>
+                                    <option value="480">480cm</option>
+                                    <option value="510">510cm</option>
+                                    <option value="540">540cm</option>
+                                    <option value="570">570cm</option>
+                                    <option value="600">600cm</option>
+                                    <option value="630">630cm</option>
+                                    <option value="660">660cm</option>
+                                    <option value="690">690cm</option>
+                                    <option value="720">720cm</option>
+                                </select>
+                                <br>
+                                <br>
+                                <label for="toolroom_length">Længde:</label>
+                                <select name="toolroom_length" id="toolroom_length">
+                                    <option value="0">0cm</option>
+                                    <option value="240">240cm</option>
+                                    <option value="270">270cm</option>
+                                    <option value="300">300cm</option>
+                                    <option value="330">330cm</option>
+                                    <option value="360">360cm</option>
+                                    <option value="390">390cm</option>
+                                    <option value="400">400cm</option>
+                                    <option value="420">420cm</option>
+                                    <option value="450">450cm</option>
+                                    <option value="480">480cm</option>
+                                    <option value="510">510cm</option>
+                                    <option value="540">540cm</option>
+                                    <option value="570">570cm</option>
+                                    <option value="600">600cm</option>
+                                    <option value="630">630cm</option>
+                                    <option value="660">660cm</option>
+                                    <option value="690">690cm</option>
+                                    <option value="720">720cm</option>
+                                    <option value="750">750cm</option>
+                                    <option value="780">780cm</option>
+                                </select><br><br><br><br>
 
 
-                                    <label for="carport_width">Bredde:</label>
-                                    <select name="carport_width" id="carport_width">
-                                        <option value="optionA">240cm</option>
-                                        <option value="optionB">270cm</option>
-                                        <option value="optionC">300cm</option>
-                                        <option value="optionD">330cm</option>
-                                        <option value="optionE">360cm</option>
-                                        <option value="optionF">390cm</option>
-                                        <option value="optionG">400cm</option>
-                                        <option value="optionH">420cm</option>
-                                        <option value="optionI">450cm</option>
-                                        <option value="optionJ">480cm</option>
-                                        <option value="optionK">510cm</option>
-                                        <option value="optionL">540cm</option>
-                                        <option value="optionM">570cm</option>
-                                        <option value="optionN">600cm</option>
-                                    </select>
+                                <textarea id="beskrivelse" name="beskrivelse" rows="4" cols="50"></textarea>
 
-                                    <h4>Carport trapeztag*</h4>
+                                <div class="message-section">
+                                    <p th:text="${message}"></p>
+                                </div>
 
-                                    <label for="carport_roof"></label>
-                                    <select name="carport_roof" id="carport_roof">
-                                        <br>
-                                        <option value="optionA1">Uden tagplader</option>
-                                        <option value="optionB1">Plasttrapezplader</option>
-                                    </select>
-
-                                    <br><br><br><br>
-                                    <h3>Redskabsskur</h3>
-                                    <p>NB! Der skal beregnes 15 cm tagudhæng på hver side af redskabsrummet*</p>
-
-                                    <h4>Redskabskur bredde:</h4>
-                                    <label for="redskabskur_width">Bredde:</label>
-                                    <select name="redskabskur_width" id="redskabskur_width">
-                                        <option value="optionå">vælg</option>
-                                        <option value="optionA">240cm</option>
-                                        <option value="optionB">270cm</option>
-                                        <option value="optionC">300cm</option>
-                                        <option value="optionD">330cm</option>
-                                        <option value="optionE">360cm</option>
-                                        <option value="optionF">390cm</option>
-                                        <option value="optionG">400cm</option>
-                                        <option value="optionH">420cm</option>
-                                        <option value="optionI">450cm</option>
-                                        <option value="optionJ">480cm</option>
-                                        <option value="optionK">510cm</option>
-                                        <option value="optionL">540cm</option>
-                                        <option value="optionM">570cm</option>
-                                        <option value="optionN">600cm</option>
-                                        <option value="optionN">630cm</option>
-                                        <option value="optionN">660cm</option>
-                                        <option value="optionN">690cm</option>
-                                        <option value="optionN">720cm</option>
-                                    </select>
-                                    <br>
-                                    <br>
-                                    <label for="redskabskur_lenght">Længde:</label>
-                                    <select name="carport_lenght" id="redskabskur_lenght">
-                                        <option value="option0">vælg</option>
-                                        <option value="option1">240cm</option>
-                                        <option value="option2">270cm</option>
-                                        <option value="option3">300cm</option>
-                                        <option value="option4">330cm</option>
-                                        <option value="option5">360cm</option>
-                                        <option value="option6">390cm</option>
-                                        <option value="option7">400cm</option>
-                                        <option value="option8">420cm</option>
-                                        <option value="option9">450cm</option>
-                                        <option value="option10">480cm</option>
-                                        <option value="option11">510cm</option>
-                                        <option value="option12">540cm</option>
-                                        <option value="option13">570cm</option>
-                                        <option value="option14">600cm</option>
-                                        <option value="option15">630cm</option>
-                                        <option value="option16">660cm</option>
-                                        <option value="option17">690cm</option>
-                                        <option value="option18">720cm</option>
-                                        <option value="option19">750cm</option>
-                                        <option value="option20">780cm</option>
-                                    </select><br><br><br><br>
-
-                                    <textarea id="beskrivelse" name="beskrivelse" rows="4" cols="50"></textarea>
-
-                                    <div class="form-group">
-                                        <input type="submit" formaction="#" value="Send forespørgsel">
-                                    </div>
-                                </form>
+                                <div class="form-group">
+                                    <input type="submit" formaction="/Inquiry" value="Send forespørgsel">
+                                </div>
+                            </form>
                         </div>
-                </div>
+                    </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
