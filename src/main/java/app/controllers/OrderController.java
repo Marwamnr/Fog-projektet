@@ -7,6 +7,7 @@ import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
 import app.persistence.OrderLineMapper;
 import app.persistence.OrderMapper;
+import app.services.Calculator;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 
@@ -15,8 +16,8 @@ import java.util.List;
 public class OrderController {
 
     public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
-        // Definer ruten til at vise ordrelisten
         app.get("/orderList", ctx -> showOrderList(ctx, connectionPool));
+
         app.post("/Inquiry", ctx -> createOrder(ctx, connectionPool));
     }
 
@@ -37,6 +38,34 @@ public class OrderController {
             ctx.status(500).result("Fejl ved hentning af ordreliste eller linjer: " + e.getMessage());
         }
     }
+
+
+    private static void sendRequest(Context ctx, ConnectionPool connectionPool) {
+        int carportWidth = ctx.sessionAttribute("carport_width");
+        int carportLength = ctx.sessionAttribute("carport_length");
+        int status = 1; // Hardcoded for now
+        int totalPrice = 19999; // Hardcoded for now
+        int userId = 1; // You may retrieve the user ID from the session or database
+        int toolroomWidth = ctx.sessionAttribute("toolroom_width");; // Not provided in the original code
+        int toolroomLength = ctx.sessionAttribute("toolroom_length");; // Not provided in the original code
+
+        Order order = new Order(0, status, userId, toolroomWidth, toolroomLength, totalPrice, carportWidth, carportLength);
+
+        try {
+            order = OrderMapper.insertOrder(order, connectionPool);
+
+            Calculator calculator = new Calculator(carportWidth, carportLength, connectionPool);
+            calculator.calcCarport(order);
+
+            // Save order lines in the database
+            OrderLineMapper.InsertOrderLines(calculator.getOrderLines(), connectionPool);
+
+            ctx.render("orderflow/requestconfirmation.html");
+        } catch (DatabaseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     private static void createOrder(Context ctx, ConnectionPool connectionPool) {
         User currentUser = ctx.sessionAttribute("currentUser");
@@ -62,7 +91,6 @@ public class OrderController {
             ctx.render("designCarport.html");
         }
     }
-
 }
 
 
