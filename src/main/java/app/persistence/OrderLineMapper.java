@@ -67,27 +67,27 @@ public class OrderLineMapper {
         }
         return partLists;
     }
-    public static void createOrderLine(List<OrderLine> orderLines, ConnectionPool connectionPool) throws DatabaseException {
+        public static void createOrderLine(List<OrderLine> orderLines, ConnectionPool connectionPool) throws DatabaseException {
 
-        String sql = "INSERT INTO order_line (order_id, material_id, description, quantity) " +
-                "VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO order_line (order_id, material_id, description, quantity) " +
+                    "VALUES (?, ?, ?, ?)";
 
-        try (Connection connection = connectionPool.getConnection()) {
+            try (Connection connection = connectionPool.getConnection()) {
 
-            for (OrderLine orderLine : orderLines) {
-                try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                    ps.setInt(1, orderLine.getOrderId());
-                    ps.setInt(2, orderLine.getMaterialId());
-                    ps.setString(3, orderLine.getDescription());
-                    ps.setInt(4, orderLine.getQuantity());
-                    ps.executeUpdate();
+                for (OrderLine orderLine : orderLines) {
+                    try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                        ps.setInt(1, orderLine.getOrderId());
+                        ps.setInt(2, orderLine.getMaterialId());
+                        ps.setString(3, orderLine.getDescription());
+                        ps.setInt(4, orderLine.getQuantity());
+                        ps.executeUpdate();
 
+                    }
                 }
+            } catch (SQLException e) {
+                throw new DatabaseException("Could not create orderline in the database: " + e.getMessage());
             }
-        } catch (SQLException e) {
-            throw new DatabaseException("Could not create orderline in the database: " + e.getMessage());
         }
-    }
 }
 
 
