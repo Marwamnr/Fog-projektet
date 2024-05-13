@@ -23,11 +23,7 @@ public class OrderStatusController {
             }
         });
 
-
-
-
     }
-
 
     public static void updateOrderStatus(Context ctx, ConnectionPool connectionPool){
         int orderId = Integer.parseInt(ctx.formParam("orderId"));
@@ -49,6 +45,12 @@ public class OrderStatusController {
             int orderId = Integer.parseInt(ctx.formParam("orderId"));
 
             List<PartList> partList = OrderLineMapper.PartList(connectionPool, orderId);
+
+            if (partList.isEmpty())
+            {
+                ctx.render("orderStatus.html.html");
+                return;
+            }
 
             List<String> orderStatusList = OrderStatusMapper.getOrderStatus(connectionPool, orderId);
 
