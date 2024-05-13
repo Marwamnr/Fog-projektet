@@ -18,7 +18,8 @@ public class OrderController {
     public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
         app.get("/orderList", ctx -> showOrderList(ctx, connectionPool));
 
-        app.post("/Inquiry", ctx -> createOrder(ctx, connectionPool));
+        app.post("/Inquiry", ctx -> sendRequest(ctx, connectionPool));
+
     }
 
     public static void showOrderList(Context ctx, ConnectionPool connectionPool) {
@@ -48,8 +49,9 @@ public class OrderController {
             ctx.render("designCarport.html");
             return;
         }
+
         int status = 1; // Hardcoded for now
-        int toolroomWidth = Integer.parseInt(ctx.formParam("toolroom_width"));
+        int toolroomWidth = Integer.parseInt(ctx    .formParam("toolroom_width"));
         int toolroomLength = Integer.parseInt(ctx.formParam("toolroom_length"));
         int carportWidth = Integer.parseInt(ctx.formParam("carport_width"));
         int carportLength = Integer.parseInt(ctx.formParam("carport_length"));
