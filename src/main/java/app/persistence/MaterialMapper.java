@@ -12,14 +12,13 @@ import java.util.List;
 
 
 public class MaterialMapper {
-    public static List<Material> getMaterialsByWidthAndMinLength(int minWidth, int minLength, int materialId, ConnectionPool connectionPool) throws DatabaseException {
+    public static List<Material> getMaterialsByWidthAndMinLength(int minLength, int materialId, ConnectionPool connectionPool) throws DatabaseException {
         List<Material> materials = new ArrayList<>();
-        String sql = "SELECT * FROM material WHERE material_id = ? AND width >= ? AND length >= ?";
+        String sql = "SELECT * FROM material WHERE material_id = ? AND length >= ?";
         try (Connection connection = connectionPool.getConnection()) {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, materialId);
-            ps.setInt(2, minWidth);
-            ps.setInt(3, minLength);
+            ps.setInt(2, minLength);
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()) {
                 int material_id = resultSet.getInt("material_id");
