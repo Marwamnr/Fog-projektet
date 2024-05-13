@@ -26,13 +26,15 @@
     <thead>
     <tr>
         <th>Status</th>
+        <th>Order</th>
     </tr>
     </thead>
-
     <tbody>
     <tr th:each="status : ${orderStatusList}">
         <td th:text="${status}"></td>
-    </tr>    </tbody>
+        <td><button>Bekræft</button></td>
+    </tr>
+    </tbody>
 </table>
 
 <h2>Partlist for Carport</h2>

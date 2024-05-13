@@ -21,7 +21,6 @@ public class UserController {
         app.get("/warranty", ctx -> ctx.render("warranty.html"));
         app.get("/shipping", ctx -> ctx.render("shipping.html"));
 
-
         app.get("/designCarport", ctx -> ctx.render("designCarport.html"));
 
         app.get("/createAccount", ctx -> ctx.render("createUser.html"));
