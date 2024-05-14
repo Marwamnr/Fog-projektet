@@ -38,6 +38,35 @@ public class OrderMapper {
         return orderList;
     }
 
+    public static List<Order> getAllOrdersUser(ConnectionPool connectionPool, int userId) throws DatabaseException {
+        String sql = "SELECT * FROM public.orders WHERE user_id = ?";
+        List<Order> orderList = new ArrayList<>();
+
+        try (
+                Connection connection = connectionPool.getConnection();
+                PreparedStatement ps = connection.prepareStatement(sql);
+        ) {
+            ps.setInt(1, userId);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int orderId = rs.getInt("order_id");
+                int orderStatusId = rs.getInt("orderstatus_id");
+                int toolroomWidth = rs.getInt("toolroom_width");
+                int toolroomLength = rs.getInt("toolroom_length");
+                int totalPrice = rs.getInt("total_price");
+                int carportWidth = rs.getInt("carport_width");
+                int carportLength = rs.getInt("carport_length");
+
+                Order order = new Order(orderId, orderStatusId, userId, toolroomWidth, toolroomLength, totalPrice, carportWidth, carportLength);
+                orderList.add(order);
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException("Error retrieving orders: " + e.getMessage());
+        }
+        return orderList;
+    }
+
     public static void createOrder(int user_id, int carportLength, int carportWidth, int toolroomLength, int toolroomWidth, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "insert into orders (orderstatus_id,user_id,toolroom_width,toolroom_length,total_price,carport_width, carport_length) values (?,?,?,?,?,?,?)";
 

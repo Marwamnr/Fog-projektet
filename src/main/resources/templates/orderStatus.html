@@ -17,27 +17,8 @@
     <img class="logo" alt="logo" src="../public/images/Foglogo.jpeg" th:src="@{/images/Foglogo.jpeg}" />
 </div>
 
-<div>
-    <button onclick="window.location.href='/'">Tilbage til forsiden</button>
-</div>
 
-<h3>Order Status</h3>
-<table class="order-status">
-    <thead>
-    <tr>
-        <th>Status</th>
-        <th>Order</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="status : ${orderStatusList}">
-        <td th:text="${status}"></td>
-        <td><button>Bekræft</button></td>
-    </tr>
-    </tbody>
-</table>
-
-<h2>Partlist for Carport</h2>
+<h2>Stykliste for Carport</h2>
     <table class="partlist-header">
         <thead>
         <tr>
@@ -61,6 +42,7 @@
         </tr>
         </tbody>
     </table>
+
 
 <div class="infoFooter">
     <p>Johannes Fog A/S</p>

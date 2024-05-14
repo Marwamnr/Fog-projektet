@@ -1,5 +1,7 @@
 package app.controllers;
 
+
+
 import app.entities.Order;
 import app.entities.OrderLine;
 import app.entities.User;
@@ -15,9 +17,21 @@ import java.util.List;
 public class OrderController {
 
     public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
+        // Definer ruten til at vise ordrelisten
         app.get("/orderList", ctx -> showOrderList(ctx, connectionPool));
-
+        app.get("/CustomerOrder", ctx -> showOrderListUser(ctx, connectionPool));
         app.post("/Inquiry", ctx -> createOrder(ctx, connectionPool));
+
+        //app.get("/Status", ctx -> ctx.render("customerOrder.html"));
+
+        app.get("/Status", ctx -> {
+            try {
+                showOrderListUser(ctx, connectionPool);
+                ctx.render("customerOrder.html");
+            } catch (Exception e) {
+                ctx.status(500).result("Error processing order status. Please try again.");
+            }
+        });
     }
 
     public static void showOrderList(Context ctx, ConnectionPool connectionPool) {
@@ -37,6 +51,33 @@ public class OrderController {
             ctx.status(500).result("Fejl ved hentning af ordreliste eller linjer: " + e.getMessage());
         }
     }
+
+    public static void showOrderListUser(Context ctx, ConnectionPool connectionPool) {
+        try {
+            // Retrieve the current user from the session
+            User currentUser = ctx.sessionAttribute("currentUser");
+
+            if (currentUser != null) {
+                int userId = currentUser.getUserId(); // Assuming getId() retrieves the user ID
+
+                // Hent ordrelisten for den specifikke bruger fra databasen
+                List<Order> orderList = OrderMapper.getAllOrdersUser(connectionPool, userId);
+
+                // Tilføj ordrelisten til konteksten
+                ctx.attribute("orderList", orderList);
+
+                // Rendere ordrelistevisningen
+                ctx.render("orderOverview.html");
+            } else {
+                // Handle the case when there is no logged-in user
+                ctx.status(401).result("Unauthorized"); // Or any appropriate action
+            }
+        } catch (Exception e) {
+            // Håndter eventuelle undtagelser
+            ctx.status(500).result("Fejl ved hentning af ordreliste: " + e.getMessage());
+        }
+    }
+
 
     private static void createOrder(Context ctx, ConnectionPool connectionPool) {
         User currentUser = ctx.sessionAttribute("currentUser");
@@ -62,7 +103,6 @@ public class OrderController {
             ctx.render("designCarport.html");
         }
     }
+
 }
-
-
 

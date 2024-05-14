@@ -13,6 +13,7 @@ import java.util.List;
 public class OrderStatusController {
 
     public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
+
         app.post("/orderStatus", ctx -> {
             try {
                 updateOrderStatus(ctx, connectionPool);
@@ -21,14 +22,18 @@ public class OrderStatusController {
                 ctx.status(500).result("Error processing order status. Please try again.");
             }
         });
-        app.get("/orderStatus", ctx -> ctx.render("orderStatus.html"));
+        //app.get("/Status", ctx -> ctx.render("orderOverview.html"));
+
     }
 
-    public static void updateOrderStatus(Context ctx, ConnectionPool connectionPool){
+
+
+
+    public static void updateOrderStatus(Context ctx, ConnectionPool connectionPool) {
         int orderId = Integer.parseInt(ctx.formParam("orderId"));
         try {
-            OrderStatusMapper.updateOrderStatusTwo(orderId, connectionPool);
-            List<String> orderStatus=OrderStatusMapper.getOrderStatus(connectionPool,orderId);
+            OrderStatusMapper.updateOrderStatus(orderId, connectionPool);
+            List<String> orderStatus = OrderStatusMapper.getOrderStatus(connectionPool, orderId);
             ctx.attribute("orderStatus", orderStatus);
             ctx.status(200).result("Order status updated successfully.");
         } catch (DatabaseException e) {
@@ -56,4 +61,3 @@ public class OrderStatusController {
         }
     }
 }
-
