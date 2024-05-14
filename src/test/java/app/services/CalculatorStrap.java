@@ -24,8 +24,8 @@ class CalculatorStrap {
     @Test
     void calcStrapsQuantity()
     {
-        Calculator calculator = new Calculator(300, 330, connectionPool);
-        assertEquals(6, calculator.calcStrapsQuantity());
+        Calculator calculator = new Calculator(780, 600, connectionPool);
+        assertEquals(2, calculator.calcStrapsQuantity());
     }
 
 }
