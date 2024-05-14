@@ -48,7 +48,7 @@ public class OrderStatusController {
 
             if (partList.isEmpty())
             {
-                ctx.render("orderStatus.html.html");
+                ctx.render("orderStatus.html");
                 return;
             }
 
@@ -56,6 +56,8 @@ public class OrderStatusController {
 
             ctx.attribute("partList", partList);
             ctx.attribute("orderStatusList", orderStatusList);
+
+
 
             ctx.render("orderStatus.html");
         } catch (Exception e) {
