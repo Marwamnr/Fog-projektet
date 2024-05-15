@@ -13,14 +13,16 @@
     <thead>
     <tr>
         <th>Status</th>
+        <th>Order</th>
     </tr>
     </thead>
     <tbody>
-
-    <tr th:each="status : ${orderStatusList}">
+    <tr th:each="status : ${orderStatus}">
         <td th:text="${status}"></td>
-    </tr>    </tbody>
+    </tr>
+    </tbody>
 </table>
+
 
 <h2>Partlist for Carport</h2>
 <table class="partlist-header">
@@ -34,6 +36,7 @@
     </tr>
     </thead>
 </table>
+
 
 <table class="partlist-items">
     <tbody>

@@ -1,9 +1,11 @@
 package app.controllers;
 
 import app.entities.PartList;
+import app.entities.User;
 import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
 import app.persistence.OrderLineMapper;
+import app.persistence.OrderMapper;
 import app.persistence.OrderStatusMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
@@ -13,7 +15,7 @@ import java.util.List;
 public class OrderStatusController {
 
     public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
-        app.get("/orderStatus", ctx -> showOrderLines(ctx, connectionPool));
+
         app.post("/orderStatus", ctx -> {
             try {
                 updateOrderStatus(ctx, connectionPool);
@@ -24,16 +26,14 @@ public class OrderStatusController {
         });
 
 
-
-
     }
 
 
-    public static void updateOrderStatus(Context ctx, ConnectionPool connectionPool){
+    public static void updateOrderStatus(Context ctx, ConnectionPool connectionPool) {
         int orderId = Integer.parseInt(ctx.formParam("orderId"));
         try {
-            OrderStatusMapper.updateOrderStatusTwo(orderId, connectionPool);
-            List<String> orderStatus=OrderStatusMapper.getOrderStatus(connectionPool,orderId);
+            OrderStatusMapper.updateOrderStatus(orderId, connectionPool);
+            List<String> orderStatus = OrderStatusMapper.getOrderStatus(connectionPool, orderId);
             ctx.attribute("orderStatus", orderStatus);
             ctx.status(200).result("Order status updated successfully.");
         } catch (DatabaseException e) {
@@ -44,21 +44,33 @@ public class OrderStatusController {
 
 
     public static void showOrderLines(Context ctx, ConnectionPool connectionPool) {
+
+        int orderId = Integer.parseInt(ctx.formParam("orderId"));
+
         try {
+            boolean payment = OrderMapper.checkPayment(orderId, connectionPool);
 
-            int orderId = Integer.parseInt(ctx.formParam("orderId"));
+            if (payment) {
 
-            List<PartList> partList = OrderLineMapper.PartList(connectionPool, orderId);
+                try {
 
-            List<String> orderStatusList = OrderStatusMapper.getOrderStatus(connectionPool, orderId);
+                    List<PartList> partList = OrderLineMapper.PartList(connectionPool, orderId);
 
-            ctx.attribute("partList", partList);
-            ctx.attribute("orderStatusList", orderStatusList);
+                    List<String> orderStatusList = OrderStatusMapper.getOrderStatus(connectionPool, orderId);
 
-            ctx.render("orderStatus.html");
+                    ctx.attribute("partList", partList);
+                    ctx.attribute("orderStatusList", orderStatusList);
+                    ctx.render("orderStatus.html");
+                } catch (Exception e) {
+                    ctx.status(500).result("Fejl ved hentning og visning af ordrelinjer: " + e.getMessage());
+                }
+            } else {
+                ctx.status(401).result("Uautoriseret: Ingen betaling fundet for ordre ID " + orderId);
+            }
+        } catch (NumberFormatException e) {
+            ctx.status(400).result("Dårlig anmodning: Ugyldigt ordre ID-format");
         } catch (Exception e) {
-            ctx.status(500).result("Error displaying order lines: " + e.getMessage());
+            ctx.status(500).result("Fejl ved behandling af anmodning: " + e.getMessage());
         }
     }
 }
-

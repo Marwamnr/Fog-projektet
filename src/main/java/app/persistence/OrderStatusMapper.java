@@ -1,7 +1,6 @@
 package app.persistence;
 
 import app.exceptions.DatabaseException;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,8 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderStatusMapper {
-
-    public static List<String> getOrderStatus(ConnectionPool connectionPool, int orderId) throws DatabaseException {
+    public static List<String> getOrderStatus(ConnectionPool connectionPool, int userId) throws DatabaseException {
         String sql = "SELECT os.status_name " +
                 "FROM public.order_status os " +
                 "INNER JOIN public.orders o ON os.orderstatus_id = o.orderstatus_id " +
@@ -21,9 +19,7 @@ public class OrderStatusMapper {
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
 
-            // Set the order_id parameter
-            ps.setInt(1, orderId);
-
+            ps.setInt(1, userId);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -31,20 +27,17 @@ public class OrderStatusMapper {
                 orderStatusList.add(statusName);
             }
         } catch (SQLException e) {
-            throw new DatabaseException("Error retrieving order status for order ID " + orderId + ": " + e.getMessage());
+            throw new DatabaseException("Error retrieving order status for user " + userId + ": " + e.getMessage());
         }
         return orderStatusList;
     }
 
-
-
-    public static void updateOrderStatusTwo(int orderId, ConnectionPool connectionPool) throws DatabaseException {
+    public static void updateOrderStatus(int orderId, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "UPDATE orders SET orderstatus_id = 2 WHERE order_id = ?";
 
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement psUpdateStatus = connection.prepareStatement(sql)) {
 
-            // Set the order_id parameter
             psUpdateStatus.setInt(1, orderId);
 
             int rowsAffected = psUpdateStatus.executeUpdate();
@@ -57,4 +50,3 @@ public class OrderStatusMapper {
         }
     }
 }
-
