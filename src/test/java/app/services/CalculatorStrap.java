@@ -22,10 +22,9 @@ class CalculatorStrap {
     }
 
     @Test
-    void calcStrapsQuantity()
-    {
+    void calcStrapsQuantity() {
         Calculator calculator = new Calculator(780, 600, connectionPool);
-        assertEquals(2, calculator.calcStrapsQuantity());
+        assertEquals(2, calculator.calcStrapsQuantity(0));
     }
 
 }
