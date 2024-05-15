@@ -32,7 +32,6 @@ public class Calculator {
         calcPosts(order);
         calcRafters(order);
         calcStraps(order);
-
     }
 
     // Stolper
@@ -53,83 +52,60 @@ public class Calculator {
     private void calcRafters(Order order) throws DatabaseException {
         List<Material> materials = MaterialMapper.getMaterialsByMinLengthAndGroupId(length, RAFTERS, connectionPool);
 
-        // If no materials of exact length are found, get the closest material with length greater than or equal to the desired length
+        // If no materials of exact length are found, get the closest material with length greater than or equal to half of the carport length
         if (materials.isEmpty()) {
-            materials = MaterialMapper.getMaterialsByMinLengthAndGroupId(length, RAFTERS, connectionPool);
+            // Calculate half of the carport length
+            int halfCarportLength = length / 2;
+
+            // Get materials with length greater than or equal to half of the carport length
+            materials = MaterialMapper.getMaterialsByMinLengthAndGroupId(halfCarportLength, RAFTERS, connectionPool);
         }
 
         // If materials are still not found, handle the case
         if (materials.isEmpty()) {
             // Handle case when no suitable materials are found
+            System.out.println("No suitable materials found for rafters.");
             return;
         }
 
-        // Calculate the number of full sections and the remaining length
-        int fullSections = length / materials.get(0).getLength();
-        int remainingLength = length % materials.get(0).getLength();
+        int quantity = calcRaftersQuantity();
+        OrderLine orderLine = new OrderLine(0, order.getOrderId(), materials.get(0).getMaterialId(), "Spær, monteres på rem", quantity);
+        orderLines.add(orderLine);
 
-        // If there's any remaining length, add an extra section to ensure coverage
-        if (remainingLength > 0) {
-            fullSections++; // Add an extra section to cover the remaining length
-        }
-
-        // Add full sections to the order lines
-        if (fullSections > 0) {
-            int quantity = calcRaftersQuantity();
-            OrderLine orderLine = new OrderLine(0, order.getOrderId(), materials.get(0).getMaterialId(), "Spær, monteres på rem", quantity * fullSections);
-            orderLines.add(orderLine);
-        }
     }
 
     public int calcRaftersQuantity() {
-        int quantity = (length / 55);
-        // The '%' operator calculates the remainder when 'length' is divided by 55.
-        // If there's any remaining length, add an extra rafter
-        if (length % 55 > 0) {
-            quantity++; // Add an extra rafter to cover the remaining length
-        }
-
-        return quantity;
+        return (int) Math.ceil((double) length / 55);
     }
 
-    // Remme
     private void calcStraps(Order order) throws DatabaseException {
         List<Material> materials = MaterialMapper.getMaterialsByMinLengthAndGroupId(length, STRAPS, connectionPool);
 
-        // If no materials of exact length are found, get the closest material with length greater than or equal to the desired length
+        // If no materials of exact length are found, get the closest material with length greater than or equal to half of the carport length
         if (materials.isEmpty()) {
-            materials = MaterialMapper.getMaterialsByMinLengthAndGroupId(length, STRAPS, connectionPool);
+            // Calculate half of the carport length
+            int halfCarportLength = length / 2;
+
+            // Get materials with length greater than or equal to half of the carport length
+            materials = MaterialMapper.getMaterialsByMinLengthAndGroupId(halfCarportLength, STRAPS, connectionPool);
         }
 
         // If materials are still not found, handle the case
         if (materials.isEmpty()) {
             // Handle case when no suitable materials are found
+            System.out.println("No suitable materials found for straps.");
             return;
         }
 
-        // Calculate the number of full sections and the remaining length
-        int fullSections = length / materials.get(0).getLength();
-        int remainingLength = length % materials.get(0).getLength();
-
-        // If there's any remaining length, add an extra section to ensure coverage
-        if (remainingLength > 0) {
-            fullSections++; // Add an extra section to cover the remaining length
-        }
-
-        // Add full sections to the order lines
-        if (fullSections > 0) {
-            int quantity = calcStrapsQuantity();
-            OrderLine orderLine = new OrderLine(0, order.getOrderId(), materials.get(0).getMaterialId(), "Remme i sider, sadles ned i stolper", quantity * fullSections);
-            orderLines.add(orderLine);
-        }
+        int quantity = calcStrapsQuantity(materials.get(0).getLength());
+        OrderLine orderLine = new OrderLine(0, order.getOrderId(), materials.get(0).getMaterialId(), "Remme i sider, sadles ned i stolper", quantity);
+        orderLines.add(orderLine);
     }
 
-    public int calcStrapsQuantity() {
-        // Using the highest length of my material for straps, for minimizing waste of many resources
-        // Math.ceil() is used to round up the result of the division to the nearest integer
-        return (int) Math.ceil(2.0 * length / 600);
+    public int calcStrapsQuantity(int strapLength) {
+        // Ensure there are at least 2 straps (one for each side)
+        return (int) Math.ceil(2.0 * length / strapLength);
     }
-
 
     public List<OrderLine> getOrderLines() {
         return orderLines;
