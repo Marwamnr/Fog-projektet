@@ -42,15 +42,16 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="order, status : ${orderList}">
+        <tr th:each="order, index : ${orderList}" th:with="statusName=${orderStatusList[index.index]}">
             <td th:text="${order.orderId}"></td>
             <td th:text="${order.toolroomWidth}"></td>
             <td th:text="${order.toolroomLength}"></td>
             <td th:text="${order.totalPrice}"></td>
             <td th:text="${order.carportWidth}"></td>
             <td th:text="${order.carportLength}"></td>
+            <td th:text="${statusName}"></td>
             <td>
-                <form action="/orderStatus" method="post">
+                <form action="/PartListCustomer" method="post">
                     <button type="submit" name="orderId" th:value="${order.orderId}">Se stykliste</button>
                 </form>
             </td>

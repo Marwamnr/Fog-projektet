@@ -16,10 +16,19 @@ public class OrderStatusController {
 
     public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
 
-        app.post("/orderStatus", ctx -> {
+        app.post("/PartListAdmin", ctx -> {
             try {
                 updateOrderStatus(ctx, connectionPool);
-                showOrderLines(ctx, connectionPool);
+                showOrderLinesAdmin(ctx, connectionPool);
+            } catch (Exception e) {
+                ctx.status(500).result("Error processing order status. Please try again.");
+            }
+        });
+
+        app.post("/PartListCustomer", ctx -> {
+            try {
+                updateOrderStatus(ctx, connectionPool);
+                showOrderLinesCustomer(ctx, connectionPool);
             } catch (Exception e) {
                 ctx.status(500).result("Error processing order status. Please try again.");
             }
@@ -43,7 +52,7 @@ public class OrderStatusController {
     }
 
 
-    public static void showOrderLines(Context ctx, ConnectionPool connectionPool) {
+    public static void showOrderLinesCustomer(Context ctx, ConnectionPool connectionPool) {
 
         int orderId = Integer.parseInt(ctx.formParam("orderId"));
 
@@ -67,10 +76,26 @@ public class OrderStatusController {
             } else {
                 ctx.status(401).result("Uautoriseret: Ingen betaling fundet for ordre ID " + orderId);
             }
-        } catch (NumberFormatException e) {
-            ctx.status(400).result("Dårlig anmodning: Ugyldigt ordre ID-format");
         } catch (Exception e) {
             ctx.status(500).result("Fejl ved behandling af anmodning: " + e.getMessage());
         }
     }
-}
+
+    public static void showOrderLinesAdmin(Context ctx, ConnectionPool connectionPool) {
+
+        int orderId = Integer.parseInt(ctx.formParam("orderId"));
+                try {
+
+                    List<PartList> partList = OrderLineMapper.PartList(connectionPool, orderId);
+
+                    List<String> orderStatusList = OrderStatusMapper.getOrderStatus(connectionPool, orderId);
+
+                    ctx.attribute("partList", partList);
+                    ctx.attribute("orderStatusList", orderStatusList);
+                    ctx.render("orderStatus.html");
+                } catch (Exception e) {
+                    ctx.status(500).result("Fejl ved hentning og visning af ordrelinjer: " + e.getMessage());
+                }
+            }
+    }
+
