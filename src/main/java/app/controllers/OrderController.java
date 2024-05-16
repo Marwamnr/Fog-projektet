@@ -22,8 +22,21 @@ public class OrderController {
 
     public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
         // Definer ruten til at vise ordrelisten
-        app.get("/orderList", ctx -> showOrderList(ctx, connectionPool));
-        app.get("/CustomerOrder", ctx -> showOrderListUser(ctx, connectionPool));
+        app.get("/orderList", ctx ->   showOrderList(ctx, connectionPool));
+
+
+        app.post("/Calculate", ctx -> {
+            try {
+                totalPrice(ctx, connectionPool);
+                showOrderList(ctx, connectionPool);
+    } catch (Exception e) {
+        ctx.status(500).result("Error processing order status. Please try again.");
+    }
+});
+
+
+
+        //app.get("/CustomerOrder", ctx -> showOrderListUser(ctx, connectionPool));
         app.post("/Inquiry", ctx -> createOrder(ctx, connectionPool));
         
         app.post("/confirm", ctx -> {
@@ -50,12 +63,14 @@ public class OrderController {
     private static void Payment(Context ctx,  ConnectionPool connectionPool) {
 
         int orderId = Integer.parseInt(ctx.formParam("orderId"));
-         int amount=(5000);
+
+        int totalPrice = Integer.parseInt(ctx.formParam("totalPrice"));
+         int amount=totalPrice;
 
         try {
             OrderMapper.createPayment(orderId, amount,connectionPool);
             ctx.attribute("message", "Betalingen er godkendt. Du kan se din stykliste");
-            //ctx.render("customerOrder.html");
+            ctx.render("customerOrder.html");
             } catch (DatabaseException e) {
                 ctx.attribute("message", "Noget gik galt. prøv igen");
                 ctx.render("customerOrder.html");
@@ -93,19 +108,19 @@ public class OrderController {
             User currentUser = ctx.sessionAttribute("currentUser");
 
             if (currentUser != null) {
-                int userId = currentUser.getUserId(); // Assuming getId() retrieves the user ID
+                int userId = currentUser.getUserId();
 
 
                     // Hent ordrelisten for den specifikke bruger fra databasen
                     List<Order> orderList = OrderMapper.getAllOrdersUser(connectionPool, userId);
-                    List<String> getOrderStatus = OrderStatusMapper.getOrderStatus(connectionPool, userId);
+                    List<String> orderStatusList = OrderStatusMapper.getOrderStatus(connectionPool, userId);
 
                     // Tilføj ordrelisten til konteksten
                     ctx.attribute("orderList", orderList);
-                    ctx.attribute("orderStatusList", getOrderStatus);
+                    ctx.attribute("orderStatusList", orderStatusList);
 
                     // Rendere ordrelistevisningen
-                    ctx.render("customerOrder.html");
+                    //ctx.render("customerOrder.html");
 
 
                 } else {
@@ -143,5 +158,16 @@ public class OrderController {
             ctx.render("designCarport.html");
         }
     }
+    private static void totalPrice(Context ctx, ConnectionPool connectionPool) {
 
+        int orderId = Integer.parseInt(ctx.formParam("orderId"));
+
+        try {
+        OrderMapper.calculateTotalPrice(connectionPool,orderId);
+        OrderMapper.saveTotalPrice(connectionPool,orderId);
+        } catch (DatabaseException e) {
+            ctx.attribute("message", "Noget gik galt med totalpris. prøv igen");
+
+        }
+    }
 }

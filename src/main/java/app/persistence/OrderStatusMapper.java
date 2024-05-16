@@ -9,17 +9,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderStatusMapper {
-    public static List<String> getOrderStatus(ConnectionPool connectionPool, int userId) throws DatabaseException {
+    public static List<String> getOrderStatus(ConnectionPool connectionPool, int user_id ) throws DatabaseException {
         String sql = "SELECT os.status_name " +
                 "FROM public.order_status os " +
                 "INNER JOIN public.orders o ON os.orderstatus_id = o.orderstatus_id " +
-                "WHERE o.order_id = ?";
+                "WHERE o.user_id = ?";
         List<String> orderStatusList = new ArrayList<>();
 
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
 
-            ps.setInt(1, userId);
+            ps.setInt(1, user_id );
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -27,7 +27,7 @@ public class OrderStatusMapper {
                 orderStatusList.add(statusName);
             }
         } catch (SQLException e) {
-            throw new DatabaseException("Error retrieving order status for user " + userId + ": " + e.getMessage());
+            throw new DatabaseException("Error retrieving order status for user " + user_id  + ": " + e.getMessage());
         }
         return orderStatusList;
     }

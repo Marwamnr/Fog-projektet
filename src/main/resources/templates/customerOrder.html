@@ -32,24 +32,27 @@
         <thead>
         <tr>
             <th>Order ID</th>
+            <th>Status</th>
             <th>Toolroom Width</th>
             <th>Toolroom Length</th>
             <th>Total Price</th>
             <th>Carport Width</th>
             <th>Carport Length</th>
             <th>Stykliste</th>
-            <th>Order</th>
+
+
         </tr>
         </thead>
         <tbody>
         <tr th:each="order, index : ${orderList}" th:with="statusName=${orderStatusList[index.index]}">
             <td th:text="${order.orderId}"></td>
+            <td th:text="${statusName}"></td>
             <td th:text="${order.toolroomWidth}"></td>
             <td th:text="${order.toolroomLength}"></td>
             <td th:text="${order.totalPrice}"></td>
             <td th:text="${order.carportWidth}"></td>
             <td th:text="${order.carportLength}"></td>
-            <td th:text="${statusName}"></td>
+
             <td>
                 <form action="/PartListCustomer" method="post">
                     <button type="submit" name="orderId" th:value="${order.orderId}">Se stykliste</button>
