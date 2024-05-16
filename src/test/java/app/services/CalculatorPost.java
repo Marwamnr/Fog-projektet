@@ -25,7 +25,7 @@ class CalculatorPost {
     @Test
     void calcPostQuantity()
     {
-        Calculator calculator = new Calculator(780, 600, connectionPool);
+        Calculator calculator = new Calculator(780, 600,0,0, connectionPool);
         assertEquals(6, calculator.calcPostsQuantity());
     }
 }
