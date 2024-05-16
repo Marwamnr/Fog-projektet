@@ -25,7 +25,7 @@ class CalculatorRafter {
     @Test
     void calcRafterQuantity()
     {
-        Calculator calculator = new Calculator(780, 600, connectionPool);
-        assertEquals(11, calculator.calcRaftersQuantity());
+        Calculator calculator = new Calculator(780, 600,400,400, connectionPool);
+        assertEquals(19, calculator.calcRaftersQuantity(1000));
     }
 }
