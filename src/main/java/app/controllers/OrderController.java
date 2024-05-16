@@ -68,7 +68,7 @@ public class OrderController {
             order = OrderMapper.insertOrder(order, connectionPool);
 
             // TODO: Calculate order items (stykliste)
-            Calculator calculator = new Calculator(carportWidth, carportLength, connectionPool);
+            Calculator calculator = new Calculator(carportWidth, carportLength, toolroomWidth, toolroomLength, connectionPool);
             calculator.calcCarport(order);
 
             // TODO: Save order items in database (stykliste)
