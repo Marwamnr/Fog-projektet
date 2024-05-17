@@ -39,7 +39,6 @@
         <th>Total Price</th>
         <th>Carport Width</th>
         <th>Carport Length</th>
-        <th>Calculate</th> <!-- New column for buttons -->
           <th>Stykliste</th>
 
       </tr>
@@ -55,18 +54,14 @@
         <td th:text="${order.totalPrice}"></td>
         <td th:text="${order.carportWidth}"></td>
         <td th:text="${order.carportLength}"></td>
-        <td>
-            <form id="calculateForm" action="/Calculate" method="post">
-                <div class="button-OO">
-                    <button type="submit" class="buttonOO">Calculate</button>
-                </div>
-            </form>
-        </td>
           <td>
-              <form action="/orderStatus" method="post">
+              <form action="/PartListAdmin" method="post">
                   <button type="submit" name="orderId" th:value="${order.orderId}">Se stykliste</button>
+
               </form>
           </td>
+
+
       </tr>
       </tbody>
     </table>

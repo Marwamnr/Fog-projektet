@@ -22,9 +22,6 @@
         <img class="logo" alt="logo" src="../public/images/Foglogo.jpeg" th:src="@{/images/Foglogo.jpeg}"/>
     </div>
 
-
-</header>
-</div>
 </header>
 
 <div class="container2">
@@ -45,15 +42,13 @@
             <br><br>
 
             <h2>Hvordan bygger man en carport?</h2>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/Gh20uQuyJkE" frameborder="0"
-                    allowfullscreen></iframe>
-
-            </video>
+            <iframe width="400" height="315" src="https://www.youtube.com/embed/Gh20uQuyJkE"></iframe>
 
         </div>
-        <div class="middlepane">
 
-        </div>
+
+
+        <div class="middlepane"> </div>
 
         <div class="rightpane">
 
@@ -135,35 +130,11 @@
                                     <option value="Plasttrapezplader">Plasttrapezplader</option>
                                 </select>
 
-                                <br><br><br><br>
+                                <br><br>
                                 <h3>Redskabsskur</h3>
-                                <p>NB! Der skal beregnes 15 cm tagudhæng på hver side af redskabsrummet*</p>
 
-                                <h4>Redskabskur bredde:</h4>
-                                <label for="toolroom_width">Bredde:</label>
-                                <select name="toolroom_width" id="toolroom_width">
-                                    <option value="0">0cm</option>
-                                    <option value="240">240cm</option>
-                                    <option value="270">270cm</option>
-                                    <option value="300">300cm</option>
-                                    <option value="330">330cm</option>
-                                    <option value="360">360cm</option>
-                                    <option value="390">390cm</option>
-                                    <option value="400">400cm</option>
-                                    <option value="420">420cm</option>
-                                    <option value="450">450cm</option>
-                                    <option value="480">480cm</option>
-                                    <option value="510">510cm</option>
-                                    <option value="540">540cm</option>
-                                    <option value="570">570cm</option>
-                                    <option value="600">600cm</option>
-                                    <option value="630">630cm</option>
-                                    <option value="660">660cm</option>
-                                    <option value="690">690cm</option>
-                                    <option value="720">720cm</option>
-                                </select>
-                                <br>
-                                <br>
+                                <h4>Redskabsskur længde:</h4>
+
                                 <label for="toolroom_length">Længde:</label>
                                 <select name="toolroom_length" id="toolroom_length">
                                     <option value="0">0cm</option>
@@ -185,12 +156,38 @@
                                     <option value="660">660cm</option>
                                     <option value="690">690cm</option>
                                     <option value="720">720cm</option>
+                                </select>
+                                <br>
+                                <h4>Redskabsskur bredde:</h4>
+
+                                <label for="toolroom_width">Bredde:</label>
+                                <select name="toolroom_width" id="toolroom_width">
+                                    <option value="0">0cm</option>
+                                    <option value="240">240cm</option>
+                                    <option value="270">270cm</option>
+                                    <option value="300">300cm</option>
+                                    <option value="330">330cm</option>
+                                    <option value="360">360cm</option>
+                                    <option value="390">390cm</option>
+                                    <option value="400">400cm</option>
+                                    <option value="420">420cm</option>
+                                    <option value="450">450cm</option>
+                                    <option value="480">480cm</option>
+                                    <option value="510">510cm</option>
+                                    <option value="540">540cm</option>
+                                    <option value="570">570cm</option>
+                                    <option value="600">600cm</option>
+                                    <option value="630">630cm</option>
+                                    <option value="660">660cm</option>
+                                    <option value="690">690cm</option>
+                                    <option value="720">720cm</option>
                                     <option value="750">750cm</option>
                                     <option value="780">780cm</option>
-                                </select><br><br><br><br>
+                                </select><br><br>
 
+                                <p> Evt. bemærkning </p>
 
-                                <textarea id="beskrivelse" name="beskrivelse" rows="4" cols="50"></textarea>
+                                <textarea id="beskrivelse" name="beskrivelse" rows="4" cols="35"></textarea>
 
                                 <div class="message-section">
                                     <p th:text="${message}"></p>
@@ -199,6 +196,8 @@
                                 <div class="form-group">
                                     <input type="submit" formaction="/Inquiry" value="Send forespørgsel">
                                 </div>
+
+
                             </form>
                         </div>
                     </div>
@@ -206,6 +205,15 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="infoFooter">
+    <p>Johannes Fog A/S</p>
+    <p>Firskovvej 20</p>
+    <p>2800 Lyngby</p>
+    <p>CVR-nr. 16314439</p>
+    <p>Tlf: 45 87 10 01</p>
+    <p>Mail: Info@johannesfog.dk</p>
 </div>
 
 </body>

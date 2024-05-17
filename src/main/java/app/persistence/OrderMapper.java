@@ -91,4 +91,51 @@ public class OrderMapper {
             throw new DatabaseException(msg, e.getMessage());
         }
     }
+
+    public static void createPayment(int orderId, int amount, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "INSERT INTO payments (order_id, amount) VALUES (?, ?)";
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            ps.setInt(1, orderId);
+            ps.setInt(2, amount);
+
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected != 1) {
+                throw new DatabaseException("Fejl ved oprettelse af betaling. Prøv igen");
+            }
+
+
+            try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    int paymentId = generatedKeys.getInt(1);
+                } else {
+                    throw new DatabaseException("Fejl ved oprettelse af betaling. Ingen genereret betalings-id blev returneret");
+                }
+            }
+        } catch (SQLException e) {
+            String msg = "Der er sket en fejl. Prøv igen";
+            throw new DatabaseException(msg, e.getMessage());
+        }
+
+    }
+
+
+    public static boolean checkPayment(int orderId, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "SELECT * FROM payments WHERE order_id = ? AND amount IS NOT NULL";
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, orderId);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next();
+            }
+        } catch (SQLException e) {
+            String errorMessage = "Error checking payment for order ID " + orderId + ": " + e.getMessage();
+            throw new DatabaseException(errorMessage);
+        }
+    }
+
+
 }

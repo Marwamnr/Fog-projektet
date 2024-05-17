@@ -37,7 +37,7 @@ public static void updateOrderStatus(int orderId, ConnectionPool connectionPool)
 
     try (Connection connection = connectionPool.getConnection();
          PreparedStatement psUpdateStatus = connection.prepareStatement(sql)) {
-
+        System.out.println("Her");
         psUpdateStatus.setInt(1, orderId);
 
         int rowsAffected = psUpdateStatus.executeUpdate();

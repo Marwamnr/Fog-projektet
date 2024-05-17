@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>CustomerOrder Overview</title>
@@ -37,26 +37,31 @@
       <th>Total Price</th>
       <th>Carport Width</th>
       <th>Carport Length</th>
+      <th>Status</th>
       <th>Stykliste</th>
-      <th>Order</th>
+
     </tr>
     </thead>
     <tbody>
-    <tr th:each="order, status : ${orderList}">
-    <td th:text="${order.orderId}"></td>
+    <tr th:each="order, index : ${orderList}" th:with="statusName=${orderStatusList[index.index]}">
+      <td th:text="${order.orderId}"></td>
       <td th:text="${order.toolroomWidth}"></td>
       <td th:text="${order.toolroomLength}"></td>
       <td th:text="${order.totalPrice}"></td>
       <td th:text="${order.carportWidth}"></td>
       <td th:text="${order.carportLength}"></td>
+      <td th:text="${statusName}"></td>
       <td>
-        <form action="/orderStatus" method="post">
+        <form action="/PartListCustomer" method="post">
           <button type="submit" name="orderId" th:value="${order.orderId}">Se stykliste</button>
         </form>
       </td>
+
       <td>
-        <!-- You don't need a nested table here -->
-        <button>Bekræft</button>
+        <form action="/confirm" method="post">
+          <button type="submit" name="orderId" th:if="${order.orderStatusId == 1}" th:value="${order.orderId}">Bekræft</button>
+          <button type="submit" name="orderId" th:if="${order.orderStatusId == 2}" th:value="${order.orderId}" th:disabled="${order.orderStatusId == 2}">Bekræft</button>
+        </form>
       </td>
 
     </tr>
