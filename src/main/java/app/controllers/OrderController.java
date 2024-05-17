@@ -60,12 +60,14 @@ public class OrderController {
     private static void Payment(Context ctx,  ConnectionPool connectionPool) {
 
         int orderId = Integer.parseInt(ctx.formParam("orderId"));
-        int amount=(5000);
+
+        int totalPrice = Integer.parseInt(ctx.formParam("totalPrice"));
+        int amount=totalPrice;
 
         try {
             OrderMapper.createPayment(orderId, amount,connectionPool);
             ctx.attribute("message", "Betalingen er godkendt. Du kan se din stykliste");
-            //ctx.render("customerOrder.html");
+            ctx.render("customerOrder.html");
         } catch (DatabaseException e) {
             ctx.attribute("message", "Noget gik galt. prøv igen");
             ctx.render("customerOrder.html");
@@ -138,7 +140,7 @@ public class OrderController {
         int toolroomLength = Integer.parseInt(ctx.formParam("toolroom_length"));
         int carportWidth = Integer.parseInt(ctx.formParam("carport_width"));
         int carportLength = Integer.parseInt(ctx.formParam("carport_length"));
-        int totalPrice = 19999; // Hardcoded for now
+        int totalPrice = 0; // Hardcoded for now
 
 
         // Create the order object
