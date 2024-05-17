@@ -18,7 +18,7 @@ public class OrderStatusController {
 
         app.post("/PartListAdmin", ctx -> {
             try {
-                updateOrderStatus(ctx, connectionPool);
+                //updateOrderStatus(ctx, connectionPool);
                 showOrderLinesAdmin(ctx, connectionPool);
             } catch (Exception e) {
                 ctx.status(500).result("Error processing order status. Please try again.");
@@ -27,7 +27,7 @@ public class OrderStatusController {
 
         app.post("/PartListCustomer", ctx -> {
             try {
-                updateOrderStatus(ctx, connectionPool);
+                //updateOrderStatus(ctx, connectionPool);
                 showOrderLinesCustomer(ctx, connectionPool);
             } catch (Exception e) {
                 ctx.status(500).result("Error processing order status. Please try again.");

@@ -34,7 +34,7 @@ public class UserMapper
                 String adress = rs.getString("adress");
                 String phonenumber = rs.getString("phonenumber");
 
-                return new User(user_id, email, password, roles);
+
                 return new User(user_id, email, password, roles, adress, phonenumber);
             } else
             {

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class OrderMapper {
     public static List<Order> getAllOrders(ConnectionPool connectionPool) throws DatabaseException {
-        String sql = "SELECT * FROM public.orders" + "ORDER BY order_id DESC";
+        String sql = "SELECT * FROM public.orders";
         List<Order> orderList = new ArrayList<>();
 
 
