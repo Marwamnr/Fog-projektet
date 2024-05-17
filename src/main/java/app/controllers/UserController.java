@@ -30,13 +30,10 @@ public class UserController {
 
         app.post("/createAccount", ctx -> ctx.render("createUser.html"));
         app.post("/submit", ctx -> createUser(ctx, connectionpool));
+        app.get("createuser",ctx -> ctx.render("createUser.html"));
+
     }
 
-
-    private static void logout(Context ctx) {
-        ctx.req().getSession().invalidate(); //sletter alle data,
-        ctx.render("frontpage");
-    }
 
     public static void login(Context ctx, ConnectionPool connectionPool) {
         //metoden henter http-anmodning

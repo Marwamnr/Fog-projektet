@@ -4,13 +4,17 @@ public class User {
     private int UserId;
     private String email;
     private String password;
-    private String role;
+    private String roles;
+    private String adress;
+    private String phonenumber;
 
-    public User(int UserId, String email, String password, String role) {
+    public User(int UserId, String email, String password, String roles, String adress, String phonenumber) {
         this.UserId = UserId;
         this.email = email;
         this.password = password;
-        this.role = role;
+        this.roles = roles;
+        this.adress = adress;
+        this.phonenumber = phonenumber;
     }
 
 
@@ -28,6 +32,14 @@ public class User {
     }
 
     public String getRoles() {
-        return role;
+        return roles;
+    }
+
+    public String getAdress() {
+        return adress;
+    }
+
+    public String getPhonenumber() {
+        return phonenumber;
     }
 }

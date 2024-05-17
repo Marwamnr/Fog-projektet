@@ -9,12 +9,17 @@ public class Material {
     private String unit;
 
     public Material(int materialId, int width, int length, int meterPrice, String description, String unit) {
+    private int groupId;
+
+    public Material(int materialId, int width, int length, int meterPrice, String description, String unit, int groupId) {
         this.materialId = materialId;
         this.width = width;
         this.length = length;
         this.meterPrice = meterPrice;
         this.description = description;
         this.unit = unit;
+
+        this.groupId = groupId;
     }
 
     public int getMaterialId() {
@@ -65,15 +70,16 @@ public class Material {
         this.unit = unit;
     }
 
-    @Override
-    public String toString() {
-        return "Material{" +
-                "materialId=" + materialId +
-                ", width=" + width +
-                ", length=" + length +
-                ", meterPrice=" + meterPrice +
-                ", description='" + description + '\'' +
-                ", unit='" + unit + '\'' +
-                '}';
+    public int getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(int groupId) {
+        this.groupId = groupId;
+    }
+
+   
     }
 }
+
+

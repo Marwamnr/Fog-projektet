@@ -35,6 +35,7 @@ public class UserMapper
                 String phonenumber = rs.getString("phonenumber");
 
                 return new User(user_id, email, password, roles);
+                return new User(user_id, email, password, roles, adress, phonenumber);
             } else
             {
                 throw new DatabaseException("Fejl i login. Prøv igen");

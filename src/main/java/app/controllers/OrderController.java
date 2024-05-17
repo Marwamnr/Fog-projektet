@@ -1,7 +1,5 @@
 package app.controllers;
 
-
-
 import app.entities.Order;
 import app.entities.OrderLine;
 import app.entities.User;
@@ -10,6 +8,7 @@ import app.persistence.ConnectionPool;
 import app.persistence.OrderLineMapper;
 import app.persistence.OrderMapper;
 import app.persistence.OrderStatusMapper;
+import app.services.Calculator;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 
@@ -82,6 +81,14 @@ public class OrderController {
 
 
 
+public class OrderController {
+
+    public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
+        app.get("/orderList", ctx -> showOrderList(ctx, connectionPool));
+
+        app.post("/Inquiry", ctx -> createOrder(ctx, connectionPool));
+
+    }
 
     public static void showOrderList(Context ctx, ConnectionPool connectionPool) {
         try {
@@ -137,6 +144,10 @@ public class OrderController {
     private static void createOrder(Context ctx, ConnectionPool connectionPool) {
         User currentUser = ctx.sessionAttribute("currentUser");
 
+
+    private static void createOrder(Context ctx, ConnectionPool connectionPool) {
+
+        User currentUser = ctx.sessionAttribute("currentUser");
         if (currentUser == null) {
             ctx.attribute("message", "Du skal logge på for at oprette en bestilling.");
             ctx.render("designCarport.html");
@@ -154,6 +165,35 @@ public class OrderController {
             OrderMapper.createOrder(user_id, carport_length, carport_width, toolroom_length, toolroom_width, connectionPool);
             ctx.render("orderConfirmation.html");
         } catch (DatabaseException e) {
+        int status = 1; // Hardcoded for now
+        int toolroomWidth = Integer.parseInt(ctx.formParam("toolroom_width"));
+        int toolroomLength = Integer.parseInt(ctx.formParam("toolroom_length"));
+        int carportWidth = Integer.parseInt(ctx.formParam("carport_width"));
+        int carportLength = Integer.parseInt(ctx.formParam("carport_length"));
+        int totalPrice = 19999; // Hardcoded for now
+
+
+        // Create the order object
+        Order order = new Order(0, status, currentUser.getUserId(), toolroomWidth, toolroomLength, totalPrice, carportWidth, carportLength);
+
+        // TODO: Insert order in database
+        try {
+
+            // Insert the order into the database and get the newly inserted order
+            order = OrderMapper.insertOrder(order, connectionPool);
+
+            // TODO: Calculate order items (stykliste)
+            Calculator calculator = new Calculator(carportWidth, carportLength, toolroomWidth, toolroomLength, connectionPool);
+            calculator.calcCarport(order);
+
+            // TODO: Save order items in database (stykliste)
+            OrderLineMapper.createOrderLine(calculator.getOrderLines(), connectionPool);
+
+            // TODO: Create message to customer and render order / request confirmation
+            ctx.render("orderConfirmation.html");
+        } catch (DatabaseException e) {
+            // Handle database exception
+            // You can customize the error message or handle it in any way appropriate for your application
             ctx.attribute("message", "Noget gik galt. prøv igen");
             ctx.render("designCarport.html");
         }
@@ -171,3 +211,6 @@ public class OrderController {
         }
     }
 }
+
+
+

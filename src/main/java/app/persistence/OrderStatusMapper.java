@@ -14,12 +14,23 @@ public class OrderStatusMapper {
                 "FROM public.order_status os " +
                 "INNER JOIN public.orders o ON os.orderstatus_id = o.orderstatus_id " +
                 "WHERE o.user_id = ?";
+
+    public static List<String> getOrderStatus(ConnectionPool connectionPool, int orderId) throws DatabaseException {
+    public static List<String> getOrderStatus(ConnectionPool connectionPool, int userId) throws DatabaseException {
+        String sql = "SELECT os.status_name " +
+                "FROM public.order_status os " +
+                "INNER JOIN public.orders o ON os.orderstatus_id = o.orderstatus_id " +
+                "WHERE o.order_id = ?";
         List<String> orderStatusList = new ArrayList<>();
 
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
 
             ps.setInt(1, user_id );
+            // Set the order_id parameter
+            ps.setInt(1, orderId);
+
+            ps.setInt(1, userId);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -28,11 +39,16 @@ public class OrderStatusMapper {
             }
         } catch (SQLException e) {
             throw new DatabaseException("Error retrieving order status for user " + user_id  + ": " + e.getMessage());
+            throw new DatabaseException("Error retrieving order status for order ID " + orderId + ": " + e.getMessage());
         }
         return orderStatusList;
     }
 
     public static void updateOrderStatus(int orderId, ConnectionPool connectionPool) throws DatabaseException {
+
+
+    public static void updateOrderStatusTwo(int orderId, ConnectionPool connectionPool) throws DatabaseException {
+    public static void updateOrderStatusTo(int orderId, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "UPDATE orders SET orderstatus_id = 2 WHERE order_id = ?";
 
         try (Connection connection = connectionPool.getConnection();
@@ -49,4 +65,10 @@ public class OrderStatusMapper {
             throw new DatabaseException(msg, e.getMessage());
         }
     }
+}
+        throw new DatabaseException(msg, e.getMessage());
+    }
+}
+
+  }
 }

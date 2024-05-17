@@ -41,6 +41,7 @@
         </form>
 
         <form th:if="${session.currentUser != null}" action="/Status" method="get">
+        <form th:if="${session.currentUser != null}" action="/orderStatus" method="get">
             <button class="button_styling"  th:if="${session.currentUser.getRoles().equals('KUNDER')}">
                 Status
             </button>
@@ -97,6 +98,65 @@
 </section>
 
 
+
+
+<div class="footer">
+
+    <div>
+        <h3>Social</h3>
+        <p class="small"><a href="https://www.facebook.com/boligdesignhus">Facebook</a></p>
+        <p><a href="https://www.instagram.com/fogboligdesign?igsh=MXM0dGR6aXFpeXJ0Mw==">Instagram</a></p>
+    </div>
+
+    <div>
+        <h3>Om Fog</h3>
+        <form action="/personalData" method="get">
+            <p><a href="/personalData">Persondatapolitik</a></p>
+        </form>
+        <form action="/aboutUs" method="get">
+            <p><a href="/aboutUs">Om os</a></p>
+        </form>
+    </div>
+
+    <div>
+        <h3>Kundeservice</h3>
+        <form action="/termsAndConditions" method="get">
+            <p><a href="/termsAndConditions">Købs- og leveringsvilkår online</a></p>
+        </form>
+        <form action="/cancellationAndReturns" method="get">
+            <p><a href="/cancellationAndReturns">Fortrydelse og returnering</a></p>
+        </form>
+        <form action="/warranty" method="get">
+            <p><a href="/warranty">Reklamation og klage</a></p>
+        </form>
+        <form action="/shipping" method="get">
+            <p><a href="/shipping">Fragt</a></p>
+        </form>
+    </div>
+
+
+
+    <div>
+        <h3>Åbningstider</h3>
+        <p>Hverdage: 06:00 - 18:00</p>
+        <p>Lørdag: 08:00 - 15:00</p>
+        <p>Søndag: 10:00 - 15:00</p>
+    </div>
+</div>
+
+<div class="infoFooter">
+    <p>Johannes Fog A/S</p>
+    <p>Firskovvej 20</p>
+    <p>2800 Lyngby</p>
+    <p>CVR-nr. 16314439</p>
+    <p>Tlf: 45 87 10 01</p>
+    <p>Mail: Info@johannesfog.dk</p>
+</div>
+
+
+
+</body>
+</html>
 
 
 
