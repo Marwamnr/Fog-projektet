@@ -12,6 +12,7 @@ import java.util.List;
 public class OrderStatusMapper {
 
     public static List<String> getOrderStatus(ConnectionPool connectionPool, int orderId) throws DatabaseException {
+    public static List<String> getOrderStatus(ConnectionPool connectionPool, int userId) throws DatabaseException {
         String sql = "SELECT os.status_name " +
                 "FROM public.order_status os " +
                 "INNER JOIN public.orders o ON os.orderstatus_id = o.orderstatus_id " +
@@ -24,6 +25,7 @@ public class OrderStatusMapper {
             // Set the order_id parameter
             ps.setInt(1, orderId);
 
+            ps.setInt(1, userId);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -39,12 +41,12 @@ public class OrderStatusMapper {
 
 
     public static void updateOrderStatusTwo(int orderId, ConnectionPool connectionPool) throws DatabaseException {
+    public static void updateOrderStatusTo(int orderId, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "UPDATE orders SET orderstatus_id = 2 WHERE order_id = ?";
 
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement psUpdateStatus = connection.prepareStatement(sql)) {
 
-            // Set the order_id parameter
             psUpdateStatus.setInt(1, orderId);
 
             int rowsAffected = psUpdateStatus.executeUpdate();
@@ -53,7 +55,9 @@ public class OrderStatusMapper {
             }
         } catch (SQLException e) {
             String msg = "An error occurred while updating order status. Please try again.";
-            throw new DatabaseException(msg, e.getMessage());
-        }
+        throw new DatabaseException(msg, e.getMessage());
     }
+}
+
+  }
 }

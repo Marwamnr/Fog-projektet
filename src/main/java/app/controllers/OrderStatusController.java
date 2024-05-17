@@ -3,11 +3,10 @@ package app.controllers;
 import app.entities.PartList;
 import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
-import app.persistence.OrderLineMapper;
 import app.persistence.OrderStatusMapper;
+import app.persistence.OrderLineMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
-
 import java.util.List;
 
 public class OrderStatusController {
@@ -20,6 +19,18 @@ public class OrderStatusController {
                 showOrderLines(ctx, connectionPool);
             } catch (Exception e) {
                 ctx.status(500).result("Error processing order status. Please try again.");
+              
+        app.get("/orderStatus", ctx -> ctx.render("orderStatus.html"));
+        app.post("/orderStatus", ctx -> showOrderLines(ctx, connectionPool));
+
+        app.post("/Calculate", ctx -> {
+            int orderId = Integer.parseInt(ctx.queryParam("order_id"));
+            try {
+                OrderStatusMapper.updateOrderStatusTo(orderId, connectionPool);
+                ctx.status(200).result("Order status updated to 2 successfully.");
+            } catch (DatabaseException e) {
+                e.printStackTrace();
+                ctx.status(500).result("Error updating order status. Please try again.");
             }
         });
 
