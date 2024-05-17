@@ -14,6 +14,9 @@ public class UserController {
         app.get("/login", ctx -> ctx.render("login.html"));
         app.post("/login", ctx -> login(ctx, connectionpool));
 
+        app.post("/logout", ctx -> logout(ctx));
+
+
         app.get("/personalData", ctx -> ctx.render("personalData.html"));
         app.get("/aboutUs", ctx -> ctx.render("aboutUs.html"));
         app.get("/termsAndConditions", ctx -> ctx.render("termsAndConditions.html"));
@@ -24,10 +27,13 @@ public class UserController {
 
         app.get("/designCarport", ctx -> ctx.render("designCarport.html"));
 
-        app.get("/createAccount", ctx -> ctx.render("createUser.html"));
+
+        app.post("/createAccount", ctx -> ctx.render("createUser.html"));
         app.post("/submit", ctx -> createUser(ctx, connectionpool));
         app.get("createuser",ctx -> ctx.render("createUser.html"));
+
     }
+
 
     public static void login(Context ctx, ConnectionPool connectionPool) {
         //metoden henter http-anmodning

@@ -14,6 +14,7 @@ import java.util.List;
 public class OrderLineMapper {
 
     public static List<OrderLine> getAllOrderLines(ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "SELECT * FROM public.order_line";
         String sql = "SELECT * FROM public.order_line " + "ORDER BY order_line_id DESC";
         List<OrderLine> orderLines = new ArrayList<>();
 
@@ -27,6 +28,7 @@ public class OrderLineMapper {
                 int materialId = rs.getInt("material_id");
                 String description = rs.getString("description");
                 int quantity = rs.getInt("quantity");
+
 
                 OrderLine orderLine = new OrderLine(orderLineId, orderId, materialId, description, quantity);
                 orderLines.add(orderLine);
@@ -51,11 +53,13 @@ public class OrderLineMapper {
             prepareStatement.setInt(1, orderId);
             try (ResultSet rs = prepareStatement.executeQuery()) {
                 while (rs.next()) {
+
                     String materialDescription = rs.getString("material_description");
                     int length = rs.getInt("length");
                     int quantity = rs.getInt("quantity");
                     String unit = rs.getString("unit");
                     String orderLineDescription = rs.getString("order_line_description");
+
 
 
                     PartList partList = new PartList(materialDescription, length, quantity, unit, orderLineDescription);
@@ -68,6 +72,11 @@ public class OrderLineMapper {
         return partLists;
     }
 
+
+    public static void createOrderLine(List<OrderLine> orderLines, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "INSERT INTO order_line (order_id, material_id, description, quantity) " +
+                "VALUES (?, ?, ?, ?)";
+        try (Connection connection = connectionPool.getConnection()) {
     public static void createOrderLine(List<OrderLine> orderLines, ConnectionPool connectionPool) throws DatabaseException {
 
         String sql = "INSERT INTO order_line (order_id, material_id, description, quantity) " +
@@ -79,6 +88,20 @@ public class OrderLineMapper {
                 try (PreparedStatement ps = connection.prepareStatement(sql)) {
                     ps.setInt(1, orderLine.getOrderId());
                     ps.setInt(2, orderLine.getMaterialId());
+                    ps.setInt(3, orderLine.getQuantity());
+                    ps.setString(4, orderLine.getDescription());
+                    ps.executeUpdate();
+                }
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException("Could not create orderline in the database", e.getMessage());
+        }
+    }
+
+}
+
+
+
                     ps.setString(3, orderLine.getDescription());
                     ps.setInt(4, orderLine.getQuantity());
                     ps.executeUpdate();
@@ -90,8 +113,3 @@ public class OrderLineMapper {
         }
     }
 }
-
-
-
-
-

@@ -40,6 +40,7 @@
             <a class="button_styling" href="/login">Fog konto</a>
         </form>
 
+        <form th:if="${session.currentUser != null}" action="/Status" method="get">
         <form th:if="${session.currentUser != null}" action="/orderStatus" method="get">
             <button class="button_styling"  th:if="${session.currentUser.getRoles().equals('KUNDER')}">
                 Status
@@ -95,6 +96,7 @@
     </div>
 
 </section>
+
 
 
 

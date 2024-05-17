@@ -12,8 +12,6 @@ import java.util.List;
 
 
 public class MaterialMapper {
-    public static List<Material> getMaterialsByMinLengthAndGroupId(int minLength, int groupId, ConnectionPool connectionPool) throws DatabaseException {
-        List<Material> materials = new ArrayList<>();
         String sql = "SELECT * FROM material WHERE group_id = ? AND length >= ?";
         try (Connection connection = connectionPool.getConnection()) {
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -28,8 +26,9 @@ public class MaterialMapper {
                 String description = resultSet.getString("description");
                 String unit = resultSet.getString("unit");
                 int group = resultSet.getInt("group_id");
-                Material material = new Material(material_id, width, length, meterPrice, description, unit, group);
-                materials.add(material);
+                Material material = new Material(material_id, width, length, meterPrice, description, unit);
+
+                
             }
         } catch (SQLException e) {
             throw new DatabaseException("Could not get materials from the database", e.getMessage());
@@ -37,4 +36,6 @@ public class MaterialMapper {
         return materials;
     }
 }
+
+
 

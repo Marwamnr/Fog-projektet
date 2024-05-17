@@ -7,6 +7,8 @@ public class Material {
     private int meterPrice;
     private String description;
     private String unit;
+
+    public Material(int materialId, int width, int length, int meterPrice, String description, String unit) {
     private int groupId;
 
     public Material(int materialId, int width, int length, int meterPrice, String description, String unit, int groupId) {
@@ -16,6 +18,7 @@ public class Material {
         this.meterPrice = meterPrice;
         this.description = description;
         this.unit = unit;
+
         this.groupId = groupId;
     }
 
@@ -75,17 +78,7 @@ public class Material {
         this.groupId = groupId;
     }
 
-    @Override
-    public String toString() {
-        return "Material{" +
-                "materialId=" + materialId +
-                ", width=" + width +
-                ", length=" + length +
-                ", meterPrice=" + meterPrice +
-                ", description='" + description + '\'' +
-                ", unit='" + unit + '\'' +
-                ", groupId=" + groupId +
-                '}';
+   
     }
 }
 
