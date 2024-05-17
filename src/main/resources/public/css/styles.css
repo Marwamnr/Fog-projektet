@@ -1,6 +1,32 @@
-
-
 /* front page */
+
+
+.button_styling {
+    background-color: #013D76;
+    padding: 10px 25px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    border: none;
+}
+
+.navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+
+}
+
+
+.flexos {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+}
+
 
 
 .button_styling {
@@ -397,3 +423,46 @@ body {
 
 
 
+
+
+
+
+
+
+
+
+
+
+}
+
+/* orderStatus.html */
+
+.partlist-header, .partlist-items {
+    border-collapse: collapse; /* Collapse table borders */
+    width: 100%; /* Ensure the table takes up full width */
+}
+
+.partlist-header th, .partlist-items td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left; /* Align text to the left */
+    width: 20%; /* Set width for each column */
+}
+
+.partlist-header {
+    margin-bottom: 20px; /* Add space below the header table */
+}
+
+/* Styles for order status table */
+.order-status {
+    width: 20%; /* Adjust the width as needed */
+    border-collapse: collapse;
+    margin: 0 auto 20px;
+}
+
+.order-status th,
+.order-status td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}

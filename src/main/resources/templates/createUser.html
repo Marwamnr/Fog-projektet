@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>createUser</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../public/css/styless.css" th:href="@{/css/styless.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<header>
+    <div class="top-text">
+        <p>1-3 dages levering</p>
+        <p>30 dages returret</p>
+        <p>klik og hent inden for 3 timer</p>
+    </div>
+
+    <div class="container">
+        <img class="logo" alt="logo" src="../public/images/Foglogo.jpeg" th:src="@{/images/Foglogo.jpeg}"/>
+    </div>
+
+</header>
+</div>
+</header>
+
+<div class="d-flex">
+    <div class="leftpane">
+        <div class="image">
+            <img class="img" alt="img" src="../public/images/carportImage.jpeg"
+                 th:src="@{/images/carportImage.jpeg}"/>
+            <br><br><br><br><br>
+        </div>
+        <div class="image">
+            <img class="img" alt="img" src="../public/images/carportFoto.webp" th:src="@{/images/carportFoto.webp}">
+        </div>
+
+    </div>
+    <div class="middlepane">
+        <div class="container">
+            <div class="d-flex">
+                <div class="leftpane">
+
+                    <div class="grey-box">
+
+                        <form class="contactinfo-form" name="firstform" method="post">
+                            <h2>Personlige oplysninger</h2>
+                            <input type="text" name="fistname" placeholder="Fornavn"/><br><br>
+                            <input type="text" name="lastname" placeholder="Efternavn"/><br><br>
+                            <input type="text" name="adress" class="zipcity" placeholder="Adresse"/><br><br>
+                            <input type="text" class="zipcity" name="postnr" placeholder="Postnr"/>
+                            <input type="text" class="city" name="city" placeholder="By"/><br><br>
+                            <input type="text" name="phonenumber" placeholder="telefonnummer"/><br><br>
+
+                            <input type="hidden" name="roles" placeholder="Kunder" value="KUNDER"/>
+
+                            <input type="email" name="email" placeholder="Email"/><br><br>
+
+                            <input type="password" name="password1" placeholder="Kodeord"/>
+                            <input type="password" name="password2" placeholder="Gentag kodeord"/>
+
+                            <h2>Bankoplysninger</h2>
+                            <input type="text" name="cardnumber" placeholder="Kortnummer"/><br><br>
+                            <input type="text" name="expiration" placeholder="Udløbdato (MM/ÅÅ)"/><br><br>
+                            <input type="text" name="cvv" placeholder="CVV"/><br><br>
+                            <input type="text" name="cardname" placeholder="Kortholders navn"/><br><br>
+
+                            <div class="form-group">
+                                <input type="submit" formaction="submit" value="submit">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="rightpane">
+
+    </div>
+</div>
+
+</body>
+</html>
