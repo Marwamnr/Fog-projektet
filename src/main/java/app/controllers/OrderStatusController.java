@@ -12,6 +12,14 @@ import java.util.List;
 public class OrderStatusController {
 
     public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
+        app.get("/orderStatus", ctx -> showOrderLines(ctx, connectionPool));
+        app.post("/orderStatus", ctx -> {
+            try {
+                updateOrderStatus(ctx, connectionPool);
+                showOrderLines(ctx, connectionPool);
+            } catch (Exception e) {
+                ctx.status(500).result("Error processing order status. Please try again.");
+              
         app.get("/orderStatus", ctx -> ctx.render("orderStatus.html"));
         app.post("/orderStatus", ctx -> showOrderLines(ctx, connectionPool));
 
@@ -25,7 +33,22 @@ public class OrderStatusController {
                 ctx.status(500).result("Error updating order status. Please try again.");
             }
         });
+
     }
+
+    public static void updateOrderStatus(Context ctx, ConnectionPool connectionPool){
+        int orderId = Integer.parseInt(ctx.formParam("orderId"));
+        try {
+            OrderStatusMapper.updateOrderStatusTwo(orderId, connectionPool);
+            List<String> orderStatus=OrderStatusMapper.getOrderStatus(connectionPool,orderId);
+            ctx.attribute("orderStatus", orderStatus);
+            ctx.status(200).result("Order status updated successfully.");
+        } catch (DatabaseException e) {
+            e.printStackTrace();
+            ctx.status(500).result("Error updating order status. Please try again.");
+        }
+    }
+
 
     public static void showOrderLines(Context ctx, ConnectionPool connectionPool) {
         try {
@@ -34,10 +57,18 @@ public class OrderStatusController {
 
             List<PartList> partList = OrderLineMapper.PartList(connectionPool, orderId);
 
+            if (partList.isEmpty())
+            {
+                ctx.render("orderStatus.html");
+                return;
+            }
+
             List<String> orderStatusList = OrderStatusMapper.getOrderStatus(connectionPool, orderId);
 
             ctx.attribute("partList", partList);
             ctx.attribute("orderStatusList", orderStatusList);
+
+
 
             ctx.render("orderStatus.html");
         } catch (Exception e) {
@@ -45,4 +76,3 @@ public class OrderStatusController {
         }
     }
 }
-

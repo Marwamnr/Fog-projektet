@@ -25,6 +25,44 @@
 
   <div class="containerOO">
     <table class="ordreOversigt-table">
+        <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Status ID</th>
+            <th>User ID</th>
+            <th>Toolroom Width</th>
+            <th>Toolroom Length</th>
+            <th>Total Price</th>
+            <th>Carport Width</th>
+            <th>Carport Length</th>
+            <th>Calculate</th> <!-- New column for buttons -->
+            <th>Stykliste</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="order : ${orderList}">
+            <td th:text="${order.orderId}"></td>
+            <td th:text="${order.orderStatusId}"></td>
+            <td th:text="${order.userId}"></td>
+            <td th:text="${order.toolroomWidth}"></td>
+            <td th:text="${order.toolroomLength}"></td>
+            <td th:text="${order.totalPrice}"></td>
+            <td th:text="${order.carportWidth}"></td>
+            <td th:text="${order.carportLength}"></td>
+            <td>
+                <form id="calculateForm" action="/Calculate" method="post">
+                    <div class="button-OO">
+                        <button type="submit" class="buttonOO">Calculate</button>
+                    </div>
+                </form>
+            </td>
+            <td>
+                <form action="/orderStatus" method="post">
+                    <button type="submit" name="orderId" th:value="${order.orderId}">Se stykliste</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
       <thead>
       <tr>
         <th>Order ID</th>
@@ -105,5 +143,6 @@
     <p>Mail: Info@johannesfog.dk</p>
   </div>
 
+</body>
   </body7>
 </html>

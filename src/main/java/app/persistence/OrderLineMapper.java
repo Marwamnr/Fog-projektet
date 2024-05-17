@@ -14,7 +14,7 @@ import java.util.List;
 public class OrderLineMapper {
 
     public static List<OrderLine> getAllOrderLines(ConnectionPool connectionPool) throws DatabaseException {
-        String sql = "SELECT * FROM public.order_line";
+        String sql = "SELECT * FROM public.order_line " + "ORDER BY order_line_id DESC";
         List<OrderLine> orderLines = new ArrayList<>();
 
         try (Connection connection = connectionPool.getConnection();
@@ -69,24 +69,29 @@ public class OrderLineMapper {
     }
 
     public static void createOrderLine(List<OrderLine> orderLines, ConnectionPool connectionPool) throws DatabaseException {
+
         String sql = "INSERT INTO order_line (order_id, material_id, description, quantity) " +
                 "VALUES (?, ?, ?, ?)";
+
         try (Connection connection = connectionPool.getConnection()) {
+
             for (OrderLine orderLine : orderLines) {
                 try (PreparedStatement ps = connection.prepareStatement(sql)) {
                     ps.setInt(1, orderLine.getOrderId());
                     ps.setInt(2, orderLine.getMaterialId());
-                    ps.setInt(3, orderLine.getQuantity());
-                    ps.setString(4, orderLine.getDescription());
+                    ps.setString(3, orderLine.getDescription());
+                    ps.setInt(4, orderLine.getQuantity());
                     ps.executeUpdate();
+
                 }
             }
         } catch (SQLException e) {
-            throw new DatabaseException("Could not create orderline in the database", e.getMessage());
+            throw new DatabaseException("Could not create orderline in the database: " + e.getMessage());
         }
     }
-
 }
+
+
 
 
 
