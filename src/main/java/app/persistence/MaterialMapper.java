@@ -12,12 +12,12 @@ import java.util.List;
 
 
 public class MaterialMapper {
-    public static List<Material> getMaterialsByWidthAndMinLength(int minLength, int materialId, ConnectionPool connectionPool) throws DatabaseException {
+    public static List<Material> getMaterialsByMinLengthAndGroupId(int minLength, int groupId, ConnectionPool connectionPool) throws DatabaseException {
         List<Material> materials = new ArrayList<>();
-        String sql = "SELECT * FROM material WHERE material_id = ? AND length >= ?";
+        String sql = "SELECT * FROM material WHERE group_id = ? AND length >= ?";
         try (Connection connection = connectionPool.getConnection()) {
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, materialId);
+            ps.setInt(1, groupId);
             ps.setInt(2, minLength);
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()) {
@@ -27,7 +27,8 @@ public class MaterialMapper {
                 int meterPrice = resultSet.getInt("meter_price");
                 String description = resultSet.getString("description");
                 String unit = resultSet.getString("unit");
-                Material material = new Material(material_id, width, length, meterPrice, description, unit);
+                int group = resultSet.getInt("group_id");
+                Material material = new Material(material_id, width, length, meterPrice, description, unit, group);
                 materials.add(material);
             }
         } catch (SQLException e) {

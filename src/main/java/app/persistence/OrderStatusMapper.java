@@ -1,7 +1,6 @@
 package app.persistence;
 
 import app.exceptions.DatabaseException;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderStatusMapper {
-
     public static List<String> getOrderStatus(ConnectionPool connectionPool, int userId) throws DatabaseException {
         String sql = "SELECT os.status_name " +
                 "FROM public.order_status os " +
@@ -21,9 +19,7 @@ public class OrderStatusMapper {
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
 
-            // Set the user_id parameter
             ps.setInt(1, userId);
-
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -36,14 +32,12 @@ public class OrderStatusMapper {
         return orderStatusList;
     }
 
-
-    public static void updateOrderStatusTo(int orderId, ConnectionPool connectionPool) throws DatabaseException {
+    public static void updateOrderStatus(int orderId, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "UPDATE orders SET orderstatus_id = 2 WHERE order_id = ?";
 
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement psUpdateStatus = connection.prepareStatement(sql)) {
-
-            // Set the order_id parameter
+            System.out.println("Her");
             psUpdateStatus.setInt(1, orderId);
 
             int rowsAffected = psUpdateStatus.executeUpdate();
@@ -56,4 +50,3 @@ public class OrderStatusMapper {
         }
     }
 }
-
