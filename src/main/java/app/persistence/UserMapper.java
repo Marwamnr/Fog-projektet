@@ -46,7 +46,7 @@ public class UserMapper
         }
     }
 
-    public static void createuser(String email, String password, String roles, String adress, String phonenumber, ConnectionPool connectionPool) throws DatabaseException {
+    public static User createuser(String email, String password, String roles, String adress, String phonenumber, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "insert into users (email, password,roles,adress,phonenumber) values (?,?,?,?,?)";
 
         try (
