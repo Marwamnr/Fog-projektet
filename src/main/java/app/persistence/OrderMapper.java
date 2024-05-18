@@ -9,9 +9,8 @@ import java.util.List;
 
 public class OrderMapper {
     public static List<Order> getAllOrders(ConnectionPool connectionPool) throws DatabaseException {
-        String sql = "SELECT * FROM public.orders" + "ORDER BY order_id DESC";
+        String sql = "SELECT * FROM orders ORDER BY order_id DESC";
         List<Order> orderList = new ArrayList<>();
-
 
         try (
                 Connection connection = connectionPool.getConnection();
@@ -39,7 +38,7 @@ public class OrderMapper {
     }
 
     public static List<Order> getAllOrdersUser(ConnectionPool connectionPool, int userId) throws DatabaseException {
-        String sql = "SELECT * FROM public.orders WHERE user_id = ?";
+        String sql = "SELECT * FROM orders WHERE user_id = ?";
         List<Order> orderList = new ArrayList<>();
 
         try (
@@ -68,7 +67,7 @@ public class OrderMapper {
     }
 
     public static Order insertOrder(Order order, ConnectionPool connectionPool) throws DatabaseException {
-        String sql = "INSERT INTO public.orders (orderstatus_id, user_id, toolroom_width, toolroom_length, total_price, carport_width, carport_length) " +
+        String sql = "INSERT INTO orders (orderstatus_id, user_id, toolroom_width, toolroom_length, total_price, carport_width, carport_length) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -86,6 +85,8 @@ public class OrderMapper {
 
                     Order newOrder = new Order(keySet.getInt(1), order.getOrderStatusId(), order.getUserId(), order.getToolroomWidth(),
                             order.getToolroomLength(), order.getTotalPrice(), order.getCarportWidth(), order.getCarportLength());
+                    // used for intergration test
+                    order.setOrderId(newOrder.getOrderId());
                     return newOrder;
                 } else
                     return null;
