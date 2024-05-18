@@ -34,7 +34,6 @@ public class UserMapper
                 String adress = rs.getString("adress");
                 String phonenumber = rs.getString("phonenumber");
 
-                return new User(user_id, email, password, roles);
                 return new User(user_id, email, password, roles, adress, phonenumber);
             } else
             {
@@ -47,7 +46,7 @@ public class UserMapper
         }
     }
 
-    public static void createuser(String email, String password, String roles, String adress, String phonenumber, ConnectionPool connectionPool) throws DatabaseException {
+    public static User createuser(String email, String password, String roles, String adress, String phonenumber, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "insert into users (email, password,roles,adress,phonenumber) values (?,?,?,?,?)";
 
         try (
