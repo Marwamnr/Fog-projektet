@@ -35,11 +35,11 @@ public class Calculator {
     }
 
     public void calcCarport(Order order) throws DatabaseException {
-        calcPosts(order);
-        calcRafters(order);
+        //calcSternFrontBack(order);
         calcStrapsPort(order);
         calcStrapsShed(order);
-        //calcSternFrontBack(order);
+        calcRafters(order);
+        calcPosts(order);
     }
 
     // Stolper
