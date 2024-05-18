@@ -59,8 +59,9 @@
 
       <td>
         <form action="/confirm" method="post">
-          <button type="submit" name="orderId" th:if="${order.orderStatusId == 1}" th:value="${order.orderId}">Bekræft</button>
-          <button type="submit" name="orderId" th:if="${order.orderStatusId == 2}" th:value="${order.orderId}" th:disabled="${order.orderStatusId == 2}">Bekræft</button>
+          <button type="submit" name="orderId" th:if="${order.orderStatusId == 1}" th:value="${order.orderId}" th:disabled="${order.orderStatusId == 1}">Bekræft</button>
+          <button type="submit" name="orderId" th:if="${order.orderStatusId == 2}" th:value="${order.orderId}">Bekræft</button>
+          <button type="submit" name="orderId" th:if="${order.orderStatusId == 3}" th:value="${order.orderId}" th:disabled="${order.orderStatusId == 3}">Bekræft</button>
         </form>
       </td>
 

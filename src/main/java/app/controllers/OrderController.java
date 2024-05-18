@@ -30,6 +30,7 @@ public class OrderController {
         app.post("/confirm", ctx -> {
             try {
                 Payment(ctx, connectionPool);
+                updateOrderStatus(ctx, connectionPool);
                 showOrderListUser(ctx, connectionPool);
                 ctx.render("customerOrder.html");
             } catch (Exception e) {
@@ -49,6 +50,7 @@ public class OrderController {
 
         app.post("/Calculate", ctx -> {
             try {
+                updateOrderStatus(ctx, connectionPool);
                 totalPrice(ctx, connectionPool);
                 showOrderList(ctx, connectionPool);
             } catch (Exception e) {
@@ -57,12 +59,12 @@ public class OrderController {
         });
     }
 
-    private static void Payment(Context ctx,  ConnectionPool connectionPool) {
+    private static void Payment(Context ctx,  ConnectionPool connectionPool) throws DatabaseException {
 
         int orderId = Integer.parseInt(ctx.formParam("orderId"));
 
-        int totalPrice = Integer.parseInt(ctx.formParam("totalPrice"));
-        int amount=totalPrice;
+        int amount = OrderMapper.calculateTotalPrice(connectionPool,orderId);
+
 
         try {
             OrderMapper.createPayment(orderId, amount,connectionPool);

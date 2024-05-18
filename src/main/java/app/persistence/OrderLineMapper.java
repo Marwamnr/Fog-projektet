@@ -14,7 +14,7 @@ import java.util.List;
 public class OrderLineMapper {
 
     public static List<OrderLine> getAllOrderLines(ConnectionPool connectionPool) throws DatabaseException {
-        String sql = "SELECT * FROM public.order_line";
+        String sql = "SELECT * FROM public.order_line ORDER BY order_line_id DESC";
         List<OrderLine> orderLines = new ArrayList<>();
 
         try (Connection connection = connectionPool.getConnection();
