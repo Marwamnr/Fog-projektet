@@ -15,7 +15,6 @@ public class Calculator {
     private static final int POSTS = 1;
     private static final int RAFTERS = 2;
     private static final int STRAPS = 2;
-    private static final int STERNS = 3;
 
     private List<OrderLine> orderLines;
     private int carportwidth;
@@ -35,25 +34,72 @@ public class Calculator {
     }
 
     public void calcCarport(Order order) throws DatabaseException {
-        //calcSternFrontBack(order);
         calcStrapsPort(order);
         calcStrapsShed(order);
         calcRafters(order);
         calcPosts(order);
     }
 
-    // Stolper
-    private void calcPosts(Order order) throws DatabaseException {
-        int quantity = calcPostsQuantity();
-        List<Material> materials = MaterialMapper.getMaterialsByMinLengthAndGroupId(0, POSTS, connectionPool);
-        Material material = materials.get(0);
-        OrderLine orderLine = new OrderLine(0, order.getOrderId(), material.getMaterialId(), "Stolper nedgraves 90 cm. i jord", quantity);
+    // Remme for carport
+    private void calcStrapsPort(Order order) throws DatabaseException {
+        List<Material> materials = MaterialMapper.getMaterialsByMinLengthAndGroupId(carportlength, STRAPS, connectionPool);
+
+        // If no materials of exact length are found, get the closest material with length greater than or equal to half of the carport length
+        if (materials.isEmpty()) {
+            // Calculate half of the carport length
+            int halfCarportLength = carportlength / 2;
+
+            // Get materials with length greater than or equal to half of the carport length
+            materials = MaterialMapper.getMaterialsByMinLengthAndGroupId(halfCarportLength, STRAPS, connectionPool);
+        }
+
+        // If materials are still not found, handle the case
+        if (materials.isEmpty()) {
+            // Handle case when no suitable materials are found
+            System.out.println("No suitable materials found for straps.");
+            return;
+        }
+
+        int quantity = calcStrapsPortQuantity(materials.get(0).getLength());
+        OrderLine orderLine = new OrderLine(0, order.getOrderId(), materials.get(0).getMaterialId(), "Remme i sider, sadles ned i stolper", quantity);
         orderLines.add(orderLine);
     }
 
-    public int calcPostsQuantity() {
+    public int calcStrapsPortQuantity(int strapLength) {
+        // Ensure there are at least 2 straps (one for each side)
+        return (int) Math.ceil(2.0 * carportlength / strapLength);
+    }
 
-        return 2 * (2 + (carportlength - 130) / 340);
+    // Remme for toolroom
+    private void calcStrapsShed(Order order) throws DatabaseException {
+        List<Material> materials = MaterialMapper.getMaterialsByMinLengthAndGroupId(toolroomlength, STRAPS, connectionPool);
+
+        // If no materials of exact length are found, get the closest material with length greater than or equal to half of the carport length
+        if (materials.isEmpty()) {
+            // Calculate half of the carport length
+            int halfToolroomLength = toolroomlength / 2;
+
+            // Get materials with length greater than or equal to half of the carport length
+            materials = MaterialMapper.getMaterialsByMinLengthAndGroupId(halfToolroomLength, STRAPS, connectionPool);
+        }
+
+        // If materials are still not found, handle the case
+        if (materials.isEmpty()) {
+            // Handle case when no suitable materials are found
+            System.out.println("No suitable materials found for straps.");
+            return;
+        }
+
+        int quantity = calcStrapsShedQuantity(materials.get(0).getLength());
+        OrderLine orderLine = new OrderLine(0, order.getOrderId(), materials.get(0).getMaterialId(), "Remme i sider, sadles ned i stolper" +
+                "(skur del, deles)", quantity);
+        orderLines.add(orderLine);
+    }
+
+    public int calcStrapsShedQuantity(int strapLength) {
+        // Ensure there are at least 2 straps (one for each side)
+        return (int) Math.ceil(2.0 * toolroomlength / strapLength);
+
     }
 
     // Spær
@@ -84,67 +130,22 @@ public class Calculator {
     }
 
     public int calcRaftersQuantity(int totalLength) {
+
         return (int) Math.ceil((double) totalLength / 55);
     }
 
-    private void calcStrapsPort(Order order) throws DatabaseException {
-        List<Material> materials = MaterialMapper.getMaterialsByMinLengthAndGroupId(carportlength, STRAPS, connectionPool);
-
-        // If no materials of exact length are found, get the closest material with length greater than or equal to half of the carport length
-        if (materials.isEmpty()) {
-            // Calculate half of the carport length
-            int halfCarportLength = carportlength / 2;
-
-            // Get materials with length greater than or equal to half of the carport length
-            materials = MaterialMapper.getMaterialsByMinLengthAndGroupId(halfCarportLength, STRAPS, connectionPool);
-        }
-
-        // If materials are still not found, handle the case
-        if (materials.isEmpty()) {
-            // Handle case when no suitable materials are found
-            System.out.println("No suitable materials found for straps.");
-            return;
-        }
-
-        int quantity = calcStrapsPortQuantity(materials.get(0).getLength());
-        OrderLine orderLine = new OrderLine(0, order.getOrderId(), materials.get(0).getMaterialId(), "Remme i sider, sadles ned i stolper", quantity);
+    // Stolper
+    private void calcPosts(Order order) throws DatabaseException {
+        int quantity = calcPostsQuantity();
+        List<Material> materials = MaterialMapper.getMaterialsByMinLengthAndGroupId(0, POSTS, connectionPool);
+        Material material = materials.get(0);
+        OrderLine orderLine = new OrderLine(0, order.getOrderId(), material.getMaterialId(), "Stolper nedgraves 90 cm. i jord", quantity);
         orderLines.add(orderLine);
     }
 
-    public int calcStrapsPortQuantity(int strapLength) {
-        // Ensure there are at least 2 straps (one for each side)
-        return (int) Math.ceil(2.0 * carportlength / strapLength);
-    }
+    public int calcPostsQuantity() {
 
-    private void calcStrapsShed(Order order) throws DatabaseException {
-        List<Material> materials = MaterialMapper.getMaterialsByMinLengthAndGroupId(toolroomlength, STRAPS, connectionPool);
-
-        // If no materials of exact length are found, get the closest material with length greater than or equal to half of the carport length
-        if (materials.isEmpty()) {
-            // Calculate half of the carport length
-            int halfToolroomLength = toolroomlength / 2;
-
-            // Get materials with length greater than or equal to half of the carport length
-            materials = MaterialMapper.getMaterialsByMinLengthAndGroupId(halfToolroomLength, STRAPS, connectionPool);
-        }
-
-        // If materials are still not found, handle the case
-        if (materials.isEmpty()) {
-            // Handle case when no suitable materials are found
-            System.out.println("No suitable materials found for straps.");
-            return;
-        }
-
-        int quantity = calcStrapsShedQuantity(materials.get(0).getLength());
-        OrderLine orderLine = new OrderLine(0, order.getOrderId(), materials.get(0).getMaterialId(), "Remme i sider, sadles ned i stolper" +
-                "(skur del, deles)", quantity);
-        orderLines.add(orderLine);
-    }
-
-    public int calcStrapsShedQuantity(int strapLength) {
-        // Ensure there are at least 2 straps (one for each side)
-        return (int) Math.ceil(2.0 * toolroomlength / strapLength);
-
+        return 2 * (2 + (carportlength - 130) / 340);
     }
 
     public List<OrderLine> getOrderLines() {
