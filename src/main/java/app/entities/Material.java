@@ -75,18 +75,6 @@ public class Material {
         this.groupId = groupId;
     }
 
-    @Override
-    public String toString() {
-        return "Material{" +
-                "materialId=" + materialId +
-                ", width=" + width +
-                ", length=" + length +
-                ", meterPrice=" + meterPrice +
-                ", description='" + description + '\'' +
-                ", unit='" + unit + '\'' +
-                ", groupId=" + groupId +
-                '}';
-    }
 }
 
 
