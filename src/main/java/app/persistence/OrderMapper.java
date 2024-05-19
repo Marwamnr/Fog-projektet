@@ -10,6 +10,7 @@ import java.util.List;
 public class OrderMapper {
     public static List<Order> getAllOrders(ConnectionPool connectionPool) throws DatabaseException {
         String sql = "SELECT * FROM orders ORDER BY order_id DESC";
+
         List<Order> orderList = new ArrayList<>();
 
         try (
