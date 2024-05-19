@@ -56,15 +56,4 @@ public class PartList {
         this.orderLineDescription = orderLineDescription;
     }
 
-    @Override
-    public String toString() {
-        return "PartlistItem{" +
-                "materialDescription='" + materialDescription + '\'' +
-                ", length=" + length +
-                ", quantity=" + quantity +
-                ", unit='" + unit + '\'' +
-                ", orderLineDescription='" + orderLineDescription + '\'' +
-                '}';
-    }
-
 }
