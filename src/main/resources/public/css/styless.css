@@ -1,270 +1,8 @@
 /* designCarport page */
 
-header {
-    margin-bottom: 30px;
-}
-
-h1 {
-    color: #3718b5;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 3rem;
-}
-
-
-
-.login-form input[type=text], .login-form input[type=password] {
-    padding: 10px;
-    font-size: 1rem;
-}
-
-.login-form button {
-    padding: 10px;
-    font-size: 1rem;
-    border-radius: 5px;
-    background-color: #3718b5;
-    color: white;
-
-}
-
-.carport-form button:hover {
-    background-color: #9B6FC7;
-
-}
-
-.carport-form button:hover {
-    background-color: #9B6FC7;
-    padding: 10px;
-    font-size: 1rem;
-    border-radius: 5px;
-    background-color: #3718b5;
-    color: white;
-
-
-}
-
 .logo {
     text-align: center;
 }
-
-
-.topmenu-right {
-    text-align: right;
-    float: right;
-}
-
-.topmenu-left {
-    text-align: left;
-}
-
-.infobox {
-    display: flex;
-    background-color: #3718b5;
-    margin: 10px;
-    padding: 20px;
-    color: white;
-    flex-wrap: wrap;
-    text-align: center;
-    justify-content: center;
-    font-size: 1.2rem;
-
-}
-
-.column {
-
-    display: flex;
-    background-color: #3718b5;
-    margin: 10px;
-    padding: 20px;
-    color: white;
-    flex-wrap: wrap;
-    text-align: center;
-    justify-content: center;
-    font-size: 1rem;
-    float: left;
-    width: 28%;
-    display: flex;
-    flex: 1;
-    height: 10px;
-}
-
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-    background-color: darkblue;
-
-}
-
-.footer {
-    background-color: darkblue;
-    height: 10px;
-}
-
-.header {
-    width: 100%;
-}
-
-.img {
-    border-radius: 20%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 8%;
-}
-
-.img_1 {
-    border-radius: 20%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 75%;
-}
-
-.carport-form, .contactinfo-form, .grey-box {
-    padding: 10px;
-    border: 10px;
-    align-content: start;
-    text-align: left;
-
-
-}
-
-.forms {
-    padding: 50px;
-
-}
-
-.grey-box {
-    background-color: #ccc;
-    padding: 20px;
-    /*border-radius: 8px;*/
-    width: 345px;
-    margin: 0 auto;
-
-
-}
-
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    color: #333;
-}
-
-.form-group input[type="text"],
-.form-group input[type="email"] {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #aaa;
-    border-radius: 4px;
-}
-
-.form-group input[type="submit"] {
-    background-color: #013D76;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 4px;
-
-}
-
-.button-group input[type="submit"] {
-    background-color: darkred;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 4px;
-    float: right;
-}
-
-
-.form-group input[type="submit"]:hover {
-    background-color: #333;
-}
-
-
-.flex-container {
-    display: flex;
-}
-
-.column {
-    flex: 1;
-    background-color: #f2f2f2;
-    padding: 20px;
-    margin: 10px;
-}
-
-.container2 {
-    width: 100%;
-    height: 100vh;
-}
-
-.toppane {
-    width: 100%;
-    height: 100px;
-    background-color: white;
-}
-
-
-.leftpane {
-    width: 30%;
-    height: 100vh;
-    background-color: white;
-    border-radius: 20px;
-    padding-left: 50px;
-}
-
-.middlepane {
-    width: 30%;
-    height: 100vh;
-    background-color: white;
-    border-top-right-radius: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-.rightpane {
-    width: 20%;
-    height: 100vh;
-    padding-right: 50px;
-    background-color: white;
-}
-
-body {
-    margin: 0 !important;
-}
-
-.d-flex {
-    display: flex;
-}
-
-.information {
-    line-height: 1.0;
-    letter-spacing: 3px;
-    align-content: start;
-}
-
-.information {
-    margin-left: 50px;
-}
-
-.d-flex {
-    text-align: left;
-}
-
-.middlepane {
-    border: 20px;
-    padding-left: 55px;
-    padding-right: 25px;
-}
-
-
 
 .infoFooter {
     margin-top: 20px;
@@ -302,25 +40,133 @@ body {
     }
 }
 
-.image {
-    width: 100%;
 
-    img.img {
+/* create user site */
+
+.createUser {
+
+    input {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
+    }
+
+
+    .grey-box {
+        background-color: #ccc;
+        padding: 20px;
+        text-align: center;
+        /*border-radius: 8px;*/
+        margin: 0 auto;
+        width: 500px;
+        border-radius: 10px;
+    }
+
+    .flex {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+        justify-content: center;
+    }
+    .flex:last-child {
+        margin-bottom: 0;
+    }
+
+    .password {
+        margin-bottom: 7px;
+    }
+
+
+    .submitBtn {
+        width: 100%;
+        background-color: #154985;
+        color: white;
+        font-weight: bold;
+        border: none;
+        padding: 10px;
+        border-radius: 4px;
+    }
+
+}
+
+
+
+
+/* carport page */
+
+.flexos {
+    display: flex;
+    gap: 10px;
+}
+
+
+.carPortSite {
+    margin: 0 100px;
+}
+
+.ctas {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+
+.flexen {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+
+    .foerste {
+        width: 50%;
+
+        h2.h2 {
+            margin: 0;
+        }
+    }
+
+    .anden {
+        width: 50%;
+    }
+
+    .framen {
+        width: 100%;
+        height: 300px;
+        border: none;
+        border-radius: 4px;
     }
 }
 
-.btn2{
-    color: darkblue;
-    text-align: right;
-
+textarea#beskrivelse {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    border-radius: 4px;
 }
 
-.form-group {
-    text-align: center;
-    margin-right: 20px;
-  
+.comment {
+    margin-top: 40px;
+    p {
+        margin: 0 0 5px 0;
+        font-weight: bold;
+    }
+}
+
+.btnnn {
+    margin-top: 10px;
+    background-color: #013D76;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.formularForCarport {
+background-color: rgba(0, 0, 0, 0.16);
+    width: fit-content;
+    padding: 10px;
+    border-radius: 4px;
+
 }

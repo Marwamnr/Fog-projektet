@@ -3,14 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>designCarport</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../public/css/styless.css" th:href="@{/css/styless.css}" rel="stylesheet"/>
 </head>
-
 <body>
 <header>
-
 
     <div class="top-text">
         <p>1-3 dages levering</p>
@@ -24,188 +20,181 @@
 
 </header>
 
-<div class="container2">
 
-    <div class="d-flex">
-        <div class="leftpane">
+<section class="carPortSite">
 
-            <p class="information">
-            <h2>Design din egen drømmecarport!</h2>
-            Vi kan tilpasse din carport præcis efter dine ønsker. Med vores interaktive værktøjer kan du vælge mellem et
-            fladt tag og tilføje dine personlige præferencer i designet. Vi vil straks levere et tilbud og en
-            skitsetegning baseret på dine valg, så du kan se din carport tage form foran dine øjne.
-            Bestil nu, og få vores standardbyggevejledning med gratis!
+    <div class="ctas">
 
-            Lad os gøre din carport-drøm til virkelighed!
+        <div class="flexos">
+            <form action="/createAccount" method="get">
+                <button type="submit" class="btn2">Opret Bruger</button>
+            </form>
 
-
-            <br><br>
-
-            <h2>Hvordan bygger man en carport?</h2>
-            <iframe width="400" height="315" src="https://www.youtube.com/embed/Gh20uQuyJkE"></iframe>
-
+            <form action="/login" method="get">
+                <button type="submit" class="btn2">Log på</button>
+            </form>
         </div>
 
+    </div>
 
+    <div class="flexen">
+        <div class="foerste">
+            <h2 class="h2">Design din egen drømmecarport!</h2>
+            <p>
+                Vi kan tilpasse din carport præcis efter dine ønsker. Med vores interaktive værktøjer kan du vælge mellem et
+                fladt tag og tilføje dine personlige præferencer i designet. Vi vil straks levere et tilbud og en
+                skitsetegning baseret på dine valg, så du kan se din carport tage form foran dine øjne.
+                Bestil nu, og få vores standardbyggevejledning med gratis!
+                <br><br>
+                Lad os gøre din carport-drøm til virkelighed!
+            </p>
+        </div>
 
-        <div class="middlepane"> </div>
-
-        <div class="rightpane">
-
-            <div class="container">
-                <div class="d-flex">
-                    <div class="leftpane">
-
-                        <div class="grey-box">
-
-                            <div class="form-group">
-                                <form action="/createAccount" method="get">
-                                    <button type="submit" class="btn2">Opret Bruger</button>
-                                </form>
-                            </div>
-
-                            <div class="form-group">
-                                <form action="/login" method="get">
-                                    <button type="submit" class="btn2">Log på</button>
-                                </form>
-                            </div>
-
-                            <form action="/Inquiry" class="carport-form" method="post">
-                                <h2>Carport efter eget valg</h2>
-                                <p>Vær venlig at udfylde formularen nøje nedenfor og tryk på "Send forespørgsel"</p>
-
-
-                                <h4>Carport længde:</h4>
-
-                                <label for="carport_length">Længde:</label>
-                                <select name="carport_length" id="carport_length">
-                                    <option value="240">240cm</option>
-                                    <option value="270">270cm</option>
-                                    <option value="300">300cm</option>
-                                    <option value="330">330cm</option>
-                                    <option value="360">360cm</option>
-                                    <option value="390">390cm</option>
-                                    <option value="400">400cm</option>
-                                    <option value="420">420cm</option>
-                                    <option value="450">450cm</option>
-                                    <option value="480">480cm</option>
-                                    <option value="510">510cm</option>
-                                    <option value="540">540cm</option>
-                                    <option value="570">570cm</option>
-                                    <option value="600">600cm</option>
-                                    <option value="630">630cm</option>
-                                    <option value="660">660cm</option>
-                                    <option value="690">690cm</option>
-                                    <option value="720">720cm</option>
-                                    <option value="750">750cm</option>
-                                    <option value="780">780cm</option>
-                                </select>
-                                <br>
-                                <h4>Carport bredde*</h4>
-
-                                <label for="carport_width">Bredde:</label>
-                                <select name="carport_width" id="carport_width">
-                                    <option value="240">240cm</option>
-                                    <option value="270">270cm</option>
-                                    <option value="300">300cm</option>
-                                    <option value="330">330cm</option>
-                                    <option value="360">360cm</option>
-                                    <option value="390">390cm</option>
-                                    <option value="400">400cm</option>
-                                    <option value="420">420cm</option>
-                                    <option value="450">450cm</option>
-                                    <option value="480">480cm</option>
-                                    <option value="510">510cm</option>
-                                    <option value="540">540cm</option>
-                                    <option value="570">570cm</option>
-                                    <option value="600">600cm</option>
-                                </select>
-
-                                <h4>Carport trapeztag*</h4>
-
-                                <label for="carport_roof"></label>
-                                <select name="carport_roof" id="carport_roof">
-                                    <br>
-                                    <option value="Uden tagplader">Uden tagplader</option>
-                                    <option value="Plasttrapezplader">Plasttrapezplader</option>
-                                </select>
-
-                                <br><br>
-                                <h3>Redskabsskur</h3>
-
-                                <h4>Redskabsskur længde:</h4>
-
-                                <label for="toolroom_length">Længde:</label>
-                                <select name="toolroom_length" id="toolroom_length">
-                                    <option value="0">0cm</option>
-                                    <option value="240">240cm</option>
-                                    <option value="270">270cm</option>
-                                    <option value="300">300cm</option>
-                                    <option value="330">330cm</option>
-                                    <option value="360">360cm</option>
-                                    <option value="390">390cm</option>
-                                    <option value="400">400cm</option>
-                                    <option value="420">420cm</option>
-                                    <option value="450">450cm</option>
-                                    <option value="480">480cm</option>
-                                    <option value="510">510cm</option>
-                                    <option value="540">540cm</option>
-                                    <option value="570">570cm</option>
-                                    <option value="600">600cm</option>
-                                    <option value="630">630cm</option>
-                                    <option value="660">660cm</option>
-                                    <option value="690">690cm</option>
-                                    <option value="720">720cm</option>
-                                </select>
-                                <br>
-                                <h4>Redskabsskur bredde:</h4>
-
-                                <label for="toolroom_width">Bredde:</label>
-                                <select name="toolroom_width" id="toolroom_width">
-                                    <option value="0">0cm</option>
-                                    <option value="240">240cm</option>
-                                    <option value="270">270cm</option>
-                                    <option value="300">300cm</option>
-                                    <option value="330">330cm</option>
-                                    <option value="360">360cm</option>
-                                    <option value="390">390cm</option>
-                                    <option value="400">400cm</option>
-                                    <option value="420">420cm</option>
-                                    <option value="450">450cm</option>
-                                    <option value="480">480cm</option>
-                                    <option value="510">510cm</option>
-                                    <option value="540">540cm</option>
-                                    <option value="570">570cm</option>
-                                    <option value="600">600cm</option>
-                                    <option value="630">630cm</option>
-                                    <option value="660">660cm</option>
-                                    <option value="690">690cm</option>
-                                    <option value="720">720cm</option>
-                                    <option value="750">750cm</option>
-                                    <option value="780">780cm</option>
-                                </select><br><br>
-
-                                <p> Evt. bemærkning </p>
-
-                                <textarea id="beskrivelse" name="beskrivelse" rows="4" cols="35"></textarea>
-
-                                <div class="message-section">
-                                    <p th:text="${message}"></p>
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="submit" formaction="/Inquiry" value="Send forespørgsel">
-                                </div>
-
-
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="anden">
+            <h2>Tips til hvordan man bygger en carport:</h2>
+            <iframe class="framen" src="https://www.youtube.com/embed/Gh20uQuyJkE"></iframe>
         </div>
     </div>
-</div>
+
+
+    <div class="formularSection">
+        <h2>Carport efter eget valg</h2>
+        <p>Vær venlig at udfylde formularen nøje nedenfor og tryk på "Send forespørgsel"</p>
+        <form action="/Inquiry" class="carport-form formularForCarport" method="post">
+            <div class="flexos">
+                <div>
+                    <h4>Carport længde:</h4>
+                    <label for="carport_length">Længde:</label>
+                    <select name="carport_length" id="carport_length">
+                        <option value="240">240cm</option>
+                        <option value="270">270cm</option>
+                        <option value="300">300cm</option>
+                        <option value="330">330cm</option>
+                        <option value="360">360cm</option>
+                        <option value="390">390cm</option>
+                        <option value="400">400cm</option>
+                        <option value="420">420cm</option>
+                        <option value="450">450cm</option>
+                        <option value="480">480cm</option>
+                        <option value="510">510cm</option>
+                        <option value="540">540cm</option>
+                        <option value="570">570cm</option>
+                        <option value="600">600cm</option>
+                        <option value="630">630cm</option>
+                        <option value="660">660cm</option>
+                        <option value="690">690cm</option>
+                        <option value="720">720cm</option>
+                        <option value="750">750cm</option>
+                        <option value="780">780cm</option>
+                    </select>
+                </div>
+
+
+                <div>
+                    <h4>Carport bredde*</h4>
+                    <label for="carport_width">Bredde:</label>
+                    <select name="carport_width" id="carport_width">
+                        <option value="240">240cm</option>
+                        <option value="270">270cm</option>
+                        <option value="300">300cm</option>
+                        <option value="330">330cm</option>
+                        <option value="360">360cm</option>
+                        <option value="390">390cm</option>
+                        <option value="400">400cm</option>
+                        <option value="420">420cm</option>
+                        <option value="450">450cm</option>
+                        <option value="480">480cm</option>
+                        <option value="510">510cm</option>
+                        <option value="540">540cm</option>
+                        <option value="570">570cm</option>
+                        <option value="600">600cm</option>
+                    </select>
+                </div>
+
+                <div>
+                    <h4>Carport trapeztag*</h4>
+                    <label for="carport_roof">Trapez-tag</label>
+                    <select name="carport_roof" id="carport_roof">
+                        <option value="Uden tagplader">Uden tagplader</option>
+                        <option value="Plasttrapezplader">Plasttrapezplader</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="flexos">
+                <div>
+                    <h4>Redskabsskur længde:</h4>
+                    <label for="toolroom_length">Længde:</label>
+                    <select name="toolroom_length" id="toolroom_length">
+                        <option value="0">0cm</option>
+                        <option value="240">240cm</option>
+                        <option value="270">270cm</option>
+                        <option value="300">300cm</option>
+                        <option value="330">330cm</option>
+                        <option value="360">360cm</option>
+                        <option value="390">390cm</option>
+                        <option value="400">400cm</option>
+                        <option value="420">420cm</option>
+                        <option value="450">450cm</option>
+                        <option value="480">480cm</option>
+                        <option value="510">510cm</option>
+                        <option value="540">540cm</option>
+                        <option value="570">570cm</option>
+                        <option value="600">600cm</option>
+                        <option value="630">630cm</option>
+                        <option value="660">660cm</option>
+                        <option value="690">690cm</option>
+                        <option value="720">720cm</option>
+                    </select>
+                </div>
+
+                <div>
+                    <h4>Redskabsskur bredde:</h4>
+                    <label for="toolroom_width">Bredde:</label>
+                    <select name="toolroom_width" id="toolroom_width">
+                        <option value="0">0cm</option>
+                        <option value="240">240cm</option>
+                        <option value="270">270cm</option>
+                        <option value="300">300cm</option>
+                        <option value="330">330cm</option>
+                        <option value="360">360cm</option>
+                        <option value="390">390cm</option>
+                        <option value="400">400cm</option>
+                        <option value="420">420cm</option>
+                        <option value="450">450cm</option>
+                        <option value="480">480cm</option>
+                        <option value="510">510cm</option>
+                        <option value="540">540cm</option>
+                        <option value="570">570cm</option>
+                        <option value="600">600cm</option>
+                        <option value="630">630cm</option>
+                        <option value="660">660cm</option>
+                        <option value="690">690cm</option>
+                        <option value="720">720cm</option>
+                        <option value="750">750cm</option>
+                        <option value="780">780cm</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="comment">
+                <p> Evt. bemærkning </p>
+                <textarea id="beskrivelse" name="beskrivelse" rows="4" cols="35"></textarea>
+            </div>
+
+            <div class="message-section">
+                <p th:text="${message}"></p>
+            </div>
+
+            <input class="btnnn" type="submit" formaction="/Inquiry" value="Send forespørgsel">
+
+        </form>
+
+    </div>
+
+</section>
+
 
 <div class="infoFooter">
     <p>Johannes Fog A/S</p>
@@ -215,6 +204,8 @@
     <p>Tlf: 45 87 10 01</p>
     <p>Mail: Info@johannesfog.dk</p>
 </div>
+
+
 
 </body>
 </html>
