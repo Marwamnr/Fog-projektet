@@ -46,7 +46,7 @@ class UserMapperTest {
                 stmt.execute("DELETE FROM test.users");
 
                 stmt.execute("INSERT INTO test.users (user_id, email, password, roles, adress, phonenumber)" +
-                        "VALUES (1, 'admin@admin.dk', '1234', 'ADMIN', 'admingade1234', '12345678'), (2,'kunde@kunde.dk','1234','KUNDE','kundegade1234',123123123)");
+                        "VALUES (1, 'admin@admin.dk', '1234', 'ADMIN', 'admingade1234', '12345678'), (2,'kunde@kunde.dk','1234','KUNDER','kundegade1234',123123123)");
 
                 // Set sequence to continue from the largest member_id
                 stmt.execute("SELECT setval('test.users_user_id_seq', COALESCE((SELECT MAX(user_id) +1 FROM test.users), 1), false)");
@@ -77,15 +77,22 @@ class UserMapperTest {
     @Test
     void createuser() {
 
-        // Define the expected user
-        User expectedUser = new User("newuser@example.com", "newUserPassword", "KUNDER", "123 testgade", "1234567890");
-
         try {
-            // Call the createuser method
-            User insertedUser = UserMapper.createuser("newuser@example.com", "newUserPassword", "KUNDER", "123 testgade", "1234567890", connectionPool);
 
-            // Assert that the properties of the insertedUser match the expectedUser
-            assertEquals(expectedUser, insertedUser);
+            User newUser = new User("newuser@newuser.dk", "1234", "KUNDER", "newusergade1234", "87654321");
+
+            User insertedUser = UserMapper.createuser(
+                    newUser.getEmail(),
+                    newUser.getPassword(),
+                    newUser.getRoles(),
+                    newUser.getAdress(),
+                    newUser.getPhonenumber(),
+                    connectionPool);
+
+            // setting UserId because it auto generates so it now also handles the Id else it will fail the test
+            newUser.setUserId(insertedUser.getUserId());
+
+            assertEquals(newUser, insertedUser);
         } catch (DatabaseException e) {
             fail("Exception occurred during user creation: " + e.getMessage());
         }

@@ -55,16 +55,5 @@ public class OrderLine {
         this.quantity = quantity;
     }
 
-    // ToString method
-    @Override
-    public String toString() {
-        return "OrderLine{" +
-                "orderLineId=" + orderLineId +
-                ", orderId=" + orderId +
-                ", materialId=" + materialId +
-                ", description='" + description + '\'' +
-                ", quantity=" + quantity +
-                '}';
-    }
 }
 

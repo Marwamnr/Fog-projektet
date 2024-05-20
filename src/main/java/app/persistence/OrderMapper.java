@@ -86,7 +86,6 @@ public class OrderMapper {
 
                     Order newOrder = new Order(keySet.getInt(1), order.getOrderStatusId(), order.getUserId(), order.getToolroomWidth(),
                             order.getToolroomLength(), order.getTotalPrice(), order.getCarportWidth(), order.getCarportLength());
-                    // used for intergration test
                     order.setOrderId(newOrder.getOrderId());
                     return newOrder;
                 } else

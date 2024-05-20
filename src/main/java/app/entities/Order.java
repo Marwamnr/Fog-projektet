@@ -130,17 +130,4 @@ public class Order {
         return result;
     }
 
-    @Override
-    public String toString() {
-        return "Order{" +
-                "orderId=" + orderId +
-                ", orderStatusId=" + orderStatusId +
-                ", userId=" + userId +
-                ", toolroomWidth=" + toolroomWidth +
-                ", toolroomLength=" + toolroomLength +
-                ", totalPrice=" + totalPrice +
-                ", carportWidth=" + carportWidth +
-                ", carportLength=" + carportLength +
-                '}';
-    }
 }
