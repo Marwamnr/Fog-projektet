@@ -25,11 +25,4 @@ public class OrderStatus {
         this.statusName = statusName;
     }
 
-    @Override
-    public String toString() {
-        return "OrderStatus{" +
-                "orderStatusId=" + orderStatusId +
-                ", statusName='" + statusName + '\'' +
-                '}';
-    }
 }
