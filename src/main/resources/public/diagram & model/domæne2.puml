@@ -1,0 +1,48 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!pragma layout smetana
+
+object carport
+object carportOrder
+object orderStatus
+object customer
+object admin
+object designCarport
+object standardCarport
+object account
+object Order
+object partsList
+object orders
+object orderlines
+object calculate
+object confirm
+
+
+
+carport --> customer
+carport --> admin
+
+admin --> Order
+Order --> calculate
+Order --> orders
+Order --> partsList
+Order --> orderlines
+
+customer --> designCarport
+customer --> standardCarport
+
+designCarport --> account
+
+account --> carportOrder
+
+carportOrder --> orderStatus
+
+orderStatus --> orders
+orderStatus --> confirm
+orderStatus --> partsList
+
+partsList --> orderlines
+
+
+
+@enduml
