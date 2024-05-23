@@ -22,10 +22,7 @@ Jantie
 
 ### Mockup i Figma: 
 
-*
-*
-*
-*
+* https://www.figma.com/design/ewIegbIP9ejqJITROWvEA3/Forside?node-id=0%3A1&t=YhrUs4UQyzCSmK97-1 
 
 
 ### Diagram & model:
