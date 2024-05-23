@@ -62,17 +62,17 @@ public class UserController {
 
             try {
                 UserMapper.createuser(email, password1, roles, adress, phonenumber, connectionPool);
-                ctx.attribute("message", "Brugeren oprettet med brugernavn: " + email + ". Log venligst på");
+                ctx.attribute("message", "Emailen oprettet med email: " + email + ". Log venligst på");
                 ctx.render("login.html");
 
             } catch (DatabaseException e) {
-                ctx.attribute("message", "Brugernavnet er allerede i brug");
+                ctx.attribute("message", "Email er allerede i brug");
                 ctx.render("createUser.html");
             }
 
         } else {
             ctx.attribute("message", "Kodeordende matcher ikke");
             ctx.render("createUser.html");
-        } ctx.render("login.html");
+        }
     }
 }
