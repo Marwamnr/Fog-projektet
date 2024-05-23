@@ -29,12 +29,10 @@ public class UserController {
     }
 
     public static void login(Context ctx, ConnectionPool connectionPool) {
-        //metoden henter http-anmodning
         String email = ctx.formParam("email");
         String password = ctx.formParam("password");
 
         try {
-            //Der forsøges at logget ind
             User user = UserMapper.login(email, password, connectionPool);
             ctx.sessionAttribute("currentUser",user); //brugeren bliver gemt
 
@@ -49,7 +47,6 @@ public class UserController {
     }
 
     public static void createUser(Context ctx, ConnectionPool connectionPool) {
-        //Hent formparametre
         String email = ctx.formParam("email");
         String password1 = ctx.formParam("password1");
         String password2 = ctx.formParam("password2");

@@ -21,12 +21,12 @@ class UserMapperTest {
     static void setupClass() {
         try (Connection connection = connectionPool.getConnection()) {
             try (Statement stmt = connection.createStatement()) {
-                // test schema is already created, so we only need to delete/create test tables
+
                 stmt.execute("DROP TABLE IF EXISTS test.users");
                 stmt.execute("DROP SEQUENCE IF EXISTS test.users_user_id_seq CASCADE");
-                // create table as copy of original public schema structure
+
                 stmt.execute("CREATE TABLE test.users AS (SELECT * FROM public.users) WITH NO DATA");
-                // create sequence for auto generating id's for users and orders
+
                 stmt.execute("CREATE SEQUENCE test.users_user_id_seq");
                 stmt.execute("ALTER TABLE test.users ALTER COLUMN user_id SET DEFAULT nextval('test.users_user_id_seq')");
             }
@@ -42,13 +42,13 @@ class UserMapperTest {
         try (Connection connection = connectionPool.getConnection()) {
             try (Statement stmt = connection.createStatement()) {
 
-                // Remove all rows from all tables
+
                 stmt.execute("DELETE FROM test.users");
 
                 stmt.execute("INSERT INTO test.users (user_id, email, password, roles, adress, phonenumber)" +
                         "VALUES (1, 'admin@admin.dk', '1234', 'ADMIN', 'admingade1234', '12345678'), (2,'kunde@kunde.dk','1234','KUNDER','kundegade1234',123123123)");
 
-                // Set sequence to continue from the largest member_id
+
                 stmt.execute("SELECT setval('test.users_user_id_seq', COALESCE((SELECT MAX(user_id) +1 FROM test.users), 1), false)");
             }
         } catch (SQLException e) {
@@ -60,7 +60,7 @@ class UserMapperTest {
 
     @Test
     void login() {
-        // Test the login functionality
+
         String email = "admin@admin.dk";
         String password = "1234";
 
@@ -68,7 +68,7 @@ class UserMapperTest {
             User user = UserMapper.login(email, password, connectionPool);
             assertNotNull(user);
             assertEquals(email, user.getEmail());
-            // Add more assertions as needed
+
         } catch (DatabaseException e) {
             fail("Exception occurred during login: " + e.getMessage());
         }
@@ -89,7 +89,6 @@ class UserMapperTest {
                     newUser.getPhonenumber(),
                     connectionPool);
 
-            // setting UserId because it auto generates so it now also handles the Id else it will fail the test
             newUser.setUserId(insertedUser.getUserId());
 
             assertEquals(newUser, insertedUser);
