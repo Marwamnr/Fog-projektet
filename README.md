@@ -15,7 +15,7 @@ Jantie
 # Aflevering 
 
 ### Rapport: 
-* Link til rapporten: 
+* Link til rapporten: https://github.com/Marwamnr/Fog-projektet/blob/main/Fog%20rapport%20.pdf
 
 ### Video-demo: 
 * Link til youtube video: https://youtu.be/WQyXpeNdI-4 
