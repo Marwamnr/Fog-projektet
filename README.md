@@ -18,7 +18,7 @@ Jantie
 * Link til rapporten: 
 
 ### Video-demo: 
-* Link til youtube video: 
+* Link til youtube video: https://youtu.be/WQyXpeNdI-4 
 
 ### Mockup i Figma: 
 
