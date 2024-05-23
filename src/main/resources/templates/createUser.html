@@ -54,8 +54,14 @@
             <input type="text" name="cardname" placeholder="Kortholders navn"/><br><br>
 
                 <input class="submitBtn" type="submit" formaction="submit" value="submit">
+
         </form>
+
+        <div th:if="${message != null}" class="error-message">
+            <p th:text="${message}"></p>
+        </div>
     </div>
+
 </section>
 
 
