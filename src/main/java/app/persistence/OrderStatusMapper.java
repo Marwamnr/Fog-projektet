@@ -40,7 +40,6 @@ public class OrderStatusMapper {
              PreparedStatement psSelectStatus = connection.prepareStatement(selectSql);
              PreparedStatement psUpdateStatus = connection.prepareStatement(updateSql)) {
 
-            // Fetch the current order status
             psSelectStatus.setInt(1, orderId);
             ResultSet rs = psSelectStatus.executeQuery();
             if (rs.next()) {

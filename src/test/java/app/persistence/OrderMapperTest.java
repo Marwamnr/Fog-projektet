@@ -22,7 +22,7 @@ class OrderMapperTest {
     static void setupClass() {
         try (Connection connection = connectionPool.getConnection()) {
             try (Statement stmt = connection.createStatement()) {
-                // test schema is already created, so we only need to delete/create test tables
+
                 stmt.execute("DROP TABLE IF EXISTS test.users");
                 stmt.execute("DROP TABLE IF EXISTS test.orders");
                 stmt.execute("DROP SEQUENCE IF EXISTS test.users_user_id_seq CASCADE");
@@ -48,7 +48,6 @@ class OrderMapperTest {
         try (Connection connection = connectionPool.getConnection()) {
             try (Statement stmt = connection.createStatement()) {
 
-                // Remove all rows from all tables
                 stmt.execute("DELETE FROM test.orders");
                 stmt.execute("DELETE FROM test.users");
 
@@ -59,7 +58,6 @@ class OrderMapperTest {
                         "VALUES (1, 2, 2, 0, 0, 1100, 240, 240), (2, 2, 2, 0, 0, 1100, 240, 240), (3, 2, 1, 0, 420, 19999, 240, 600)");
 
 
-                // Set sequence to continue from the largest member_id
                 stmt.execute("SELECT setval('test.orders_order_id_seq', COALESCE((SELECT MAX(order_id) +1 FROM test.orders), 1), false)");
                 stmt.execute("SELECT setval('test.users_user_id_seq', COALESCE((SELECT MAX(user_id) +1 FROM test.users), 1), false)");
             }
@@ -87,13 +85,11 @@ class OrderMapperTest {
     void getAllOrdersUser() {
 
         try {
-            // Get all orders for a specific user (user_id = 1)
             int userId = 1;
 
             List<Order> userOrders = OrderMapper.getAllOrdersUser(connectionPool, userId);
 
-            // Verify that the number of orders for the user matches the expected count
-            int expected = 1; // Assuming there's only one order for user_id = 1 in the test data
+            int expected = 1;
             assertEquals(expected, userOrders.size());
 
         } catch (DatabaseException e) {
@@ -106,14 +102,10 @@ class OrderMapperTest {
     void insertOrder() {
         try {
 
-            // Create a new Order object
             Order newOrder = new Order(1, 1, 550, 750, 1000, 750, 550);
-            // Assuming the user ID is set correctly as 3 for the newly inserted user
 
-            // Get the initial count of orders in the database
             Order insertedOrder = OrderMapper.insertOrder(newOrder, connectionPool); // Ensure unique ID for the test
 
-            // Verify that the returned order object is not null
             assertEquals(newOrder, insertedOrder);
 
         } catch (DatabaseException e) {

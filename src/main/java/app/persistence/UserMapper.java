@@ -11,16 +11,13 @@ public class UserMapper {
         String sql = "select * from users where email=? and password=?";
 
         try (
-                //oprettes en forbindelse til databasen
                 Connection connection = connectionPool.getConnection();
                 PreparedStatement ps = connection.prepareStatement(sql)
         ) {
-            //Det bliver sat som parametre
             ps.setString(1, email);
             ps.setString(2, password);
 
 
-            //sql bliver udført og gemme resultatet
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 int user_id = rs.getInt("user_id");
