@@ -47,5 +47,5 @@ Jantie
   
 
 ### Database: 
-* Database sql: 
+* Database sql: https://github.com/Marwamnr/Fog-projektet/blob/main/src/main/resources/public/diagram%20%26%20model/database.sql
 
