@@ -31,9 +31,9 @@ Jantie
   
 * Domaine model 2: https://github.com/Marwamnr/Fog-projektet/blob/main/src/main/resources/public/diagram%20%26%20model/domæne2.puml
 
-* ER Diagram: 
+* ER Diagram: https://github.com/Marwamnr/Fog-projektet/blob/main/src/main/resources/public/diagram%20%26%20model/ERR.png
   
-* Aktivitets Diagram:
+* Aktivitets Diagram
 
   AS: https://github.com/Marwamnr/Fog-projektet/blob/main/src/main/resources/public/diagram%20%26%20model/AS-IS.puml
 
